@@ -1,0 +1,57 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+\sisetup{
+  table-number-alignment  = center,
+  % parse-numbers = false, disables numer parsing and goes into math mode asterisks become larger!
+  group-digits            = false,
+  table-format            = -2.6,
+  % table-auto-round,
+  input-symbols           = {()},  % redefine ( ) as text symbols
+  table-space-text-post   = {***},
+  table-align-text-post   = false, % toggle alignment of *** after estimates
+}
+
+
+\begin{document}
+
+\centering
+\scriptsize
+
+\begin{tabular}{lSSSSS}
+
+\toprule
+  & \multicolumn{5}{c}{Simultaneous Quantile Regression}\\
+  & \multicolumn{1}{c}{q10} & \multicolumn{1}{c}{q25}
+  & \multicolumn{1}{c}{q50} & \multicolumn{1}{c}{q75} & \multicolumn{1}{c}{q90}\\
+  \cmidrule(lr){1-1} \cmidrule(lr){2-2} \cmidrule(lr){3-3}
+  \cmidrule(lr){4-4} \cmidrule(lr){5-5} \cmidrule(lr){6-6}
+Innovation        & -20.000961***  & 0.001*** & 0.00105*** & 0.00104*** & -99.999999*** \\
+                  & (7.17)         & (9.34)   & (14.06)    & (17.11)    & (99.999999)   \\
+Medium-large firm & 0.138298***    & 0.134*** & 0.118***   & 0.0849***  & -11.111111*** \\
+                  & (16.79)        & (20.00)  & (17.90)    & (14.07)    & (11.111111)   \\
+\bottomrule
+\end{tabular}
+
+
+\bigskip
+
+Beware of different asterisks:
+
+\begin{tabular}{cc}
+\toprule
+\LaTeX & output \\
+\midrule
+\verb|***|      & ***      \\
+\verb|$***$|    & $***$    \\
+\verb|$^{***}$| & $^{***}$ \\
+\bottomrule
+\end{tabular}
+
+\end{document}

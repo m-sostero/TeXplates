@@ -1,0 +1,78 @@
+\beamertemplatenavigationsymbolsempty  % remove navigation symbols
+\useoutertheme{smoothbars} % use little balls navigation style
+
+% Set image to full available space
+\newif\ifsidebartheme
+\sidebarthemetrue
+
+\newdimen\contentheight
+\newdimen\contentwidth
+\newdimen\contentleft
+\newdimen\contentbottom
+\makeatletter
+\newcommand*{\calculatespace}{%
+\contentheight=\paperheight%
+\ifx\beamer@frametitle\@empty%
+    \setbox\@tempboxa=\box\voidb@x%
+  \else%
+    \setbox\@tempboxa=\vbox{%
+      \vbox{}%
+      {\parskip0pt\usebeamertemplate***{frametitle}}%
+    }%
+    \ifsidebartheme%
+      \advance\contentheight by-1em%
+    \fi%
+  \fi%
+\advance\contentheight by-\ht\@tempboxa%
+\advance\contentheight by-\dp\@tempboxa%
+\advance\contentheight by-\beamer@frametopskip%
+\ifbeamer@plainframe%
+\contentbottom=0pt%
+\else%
+\advance\contentheight by-\headheight%
+\advance\contentheight by\headdp%
+\advance\contentheight by-\footheight%
+\advance\contentheight by4pt%
+\contentbottom=\footheight%
+\advance\contentbottom by-4pt%
+\fi%
+\contentwidth=\paperwidth%
+\ifbeamer@plainframe%
+\contentleft=0pt%
+\else%
+\advance\contentwidth by-\beamer@rightsidebar%
+\advance\contentwidth by-\beamer@leftsidebar\relax%
+\contentleft=\beamer@leftsidebar%
+\fi%
+}
+\makeatother
+
+
+% Modify theme
+\definecolor{dark.red}{RGB}{122,0,0}
+
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[default]         
+\setbeamerfont{section number projected}{family=\rmfamily,series=\bfseries,size=\normalsize}
+\setbeamertemplate{sections/subsections in toc}[sections numbered]
+\setbeamercolor*{sections/subsections in toc}{fg=dark.red}
+\setbeamercolor*{item}{fg=dark.red}
+\setbeamercolor*{button}{bg=dark.red, fg=white}
+\setbeamercolor*{block title}{bg=dark.red,fg=white}
+\newcommand{\ma}[1]{\textbf{\textcolor{dark.red}{{#1}}}}
+
+
+% How to use it
+
+%{
+%\setbeamertemplate{background canvas}{%
+%\calculatespace%
+%\begin{pgfpicture}
+%    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\paperheight}}
+%    \pgftext[at=\pgfpoint{\contentleft+0.5\contentwidth}{\contentbottom+0.5\contentheight}]{\includegraphics[width=\contentwidth,height=\contentheight]{./ISQOLS-grafici/ISQOLS-Dashboard-2011.pdf}}
+%\end{pgfpicture}%
+%}
+%\begin{frame}
+%\frametitle{Dashboard of reference values of topical indices for 2011}
+%\end{frame}
+%}

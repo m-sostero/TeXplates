@@ -1,0 +1,63 @@
+\documentclass{beamer} %
+\usetheme{CambridgeUS}
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usetikzlibrary{arrows,shapes}
+
+\author{Author}
+\title{Presentation title}
+
+\begin{document}
+
+% For every picture that defines or uses external nodes, you'll have to
+% apply the 'remember picture' style. To avoid some typing, we'll apply
+% the style to all pictures.
+\tikzstyle{every picture}+=[remember picture]
+
+% By default all math in TikZ nodes are set in inline mode. Change this to
+% displaystyle so that we don't get small fractions.
+\everymath{\displaystyle}
+
+\begin{frame}
+\frametitle{Structure of Demand}
+
+\tikzstyle{na} = [baseline=-.5ex]
+
+\begin{itemize}[<+-| alert@+>]
+    \item Demand \tikz[na] \node[coordinate] (n1) {};
+\end{itemize}
+
+% Below we mix an ordinary equation with TikZ nodes. Note that we have to
+% adjust the baseline of the nodes to get proper alignment with the rest of
+% the equation.
+\begin{equation*}
+        \tikz[baseline]{\node[anchor=base] (t1){Z};} =
+        \tikz[baseline]{\node[anchor=base] (t2){C};} +
+        \tikz[baseline]{\node[anchor=base] (t3){I};} +
+        \tikz[baseline]{\node[anchor=base] (t4){G};} +
+        \tikz[baseline]{\node[anchor=base] (t5){X};} -
+        \tikz[baseline]{\node[anchor=base] (t6){Im};} 
+\end{equation*}
+
+\begin{itemize}[<+-| alert@+>]
+    \item Consumer spending 	\tikz[na]\node [coordinate] (n2) {};
+    \item Investment 			\tikz[na]\node [coordinate] (n3) {};
+    \item Government spending 	\tikz[na]\node [coordinate] (n4) {};
+    \item Exports			 	\tikz[na]\node [coordinate] (n5) {};
+    \item Imports			 	\tikz[na]\node [coordinate] (n6) {};
+\end{itemize}
+
+% Now it's time to draw some edges between the global nodes. Note that we
+% have to apply the 'overlay' style.
+\begin{tikzpicture}[overlay]
+        \path[->]<1-> (n1) edge [bend left] (t1);
+        \path[->]<2-> (n2) edge [bend right] (t2);
+        \path[->]<3-> (n3) edge [bend right] (t3);
+        \path[->]<4-> (n4) edge [bend right] (t4);
+        \path[->]<5-> (n5) edge [bend right] (t5);
+        \path[->]<6-> (n6) edge [bend right] (t6);
+\end{tikzpicture}
+\end{frame}
+\end{document}

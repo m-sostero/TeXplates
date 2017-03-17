@@ -1,0 +1,76 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setmonofont{Consolas}
+
+\usepackage{minted}
+% call (Xe)LaTeX with
+% "-shell-escape" (to call Python/pygments)
+% "-8bit" to display tabs correctly in XeLaTeX
+
+\title{Code Highlighting with Minted}
+\author{Matteo Sostero}
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+\item C♯
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{csharp}
+string title = "This is a Unicode π in the sky"
+/*
+ Defined as $\pi=\lim_{n\to\infty}\frac{P_n}{d}$ where $P$ is the perimeter of an $n$-sided
+ regular polygon circumscribing a circle of diameter $d$.
+*/
+const double pi = 3.1415926535
+\end{minted}
+
+\item C
+\begin{minted}[linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm,
+               tabsize=4,obeytabs]{c}
+/* comment */
+int main() {
+hello!
+	printf("hello, world");
+	return 0;
+}
+\end{minted}
+
+\item R
+\begin{minted}[linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+library("hello")
+# Comment
+x <- runif(100)
+hist(x)
+\end{minted}
+
+\item Python
+\begin{minted}[linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm,
+               tabsize=4,obeytabs]{python}
+# Find the Fibonacci numbers
+def fib(n):
+    a, b = 0, 1
+    while a < n:
+        print(a, end=' ')
+        a, b = b, a+b
+    print()
+fib(1000)
+\end{minted}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,54 @@
+\documentclass[rgb,dvipsnames, 10pt,a4paper]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{etex,microtype,libertine,tikz,graphicx}
+\usetikzlibrary{arrows,positioning} 
+
+\usetheme{Copenhagen}
+\usecolortheme{beaver}
+\beamertemplatenavigationsymbolsempty  % remove navigation symbols
+\useoutertheme{smoothbars} % use little balls navigation style
+
+\begin{document}
+
+\begin{frame}{Some frame}
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    system/.style={rectangle,rounded corners,draw=black, very thick, text width=6.5em, minimum height=2em,text centered},
+    % Define arrow style
+    rel/.style={ ->, thick, shorten <=2pt, shorten >=2pt},
+    every loop/.style={min distance=10mm,looseness=1}
+}
+\centering
+
+\begin{tikzpicture}[node distance=1.65cm, auto]
+ %nodes
+\node (dummy) {};
+\node[system, right of=dummy] (real) {Real system};
+\onslide<2->{\node[system, left of=dummy] (formal) {Formal system};}
+\onslide<3->{\node[node distance=2.5cm, system, below of=dummy] (obs) {Observed system};}
+\onslide<6->{\path (formal)			edge[rel, bend left=45] 	node[above] {decoding} (real);}
+\onslide<3->{\path (real)					edge[rel, bend left=45] 	node[right, text width=6.5em,text centered] {{description, measurement}} (obs);}
+\onslide<3->{\path (obs)					edge[rel, bend left=45] 	node[left] {encoding} (formal);}
+\onslide<4->{\path (real) 				edge[rel, bend left=45] 	node[below]	{(d)eduction} (formal);}
+\onslide<5->{\path (formal) 			edge[rel,loop left,dashed]	node[left] 	(implication) 	{implication} 	(formal);}
+\onslide<1->{\path (real) 				edge[rel,loop right,dashed] 	node[right](causality)		{causality} 		(real);}
+\onslide<7->{\path (implication) 	edge[rel, <->,dotted,bend left=40] node[above] {model adequacy} (causality);}
+\end{tikzpicture}
+\end{frame}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+

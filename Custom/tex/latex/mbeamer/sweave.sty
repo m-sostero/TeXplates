@@ -1,0 +1,103 @@
+% ---------------------------------------------------------------------
+% Custom R listings package
+% Matteo Sostero, 23/10/2013
+% ---------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+
+\ProvidesPackage{sweave}
+
+% the main package, to typeset code in LaTeX
+\RequirePackage{listings}
+\RequirePackage{xspace}
+%\RequirePackage{textcomp}
+%\RequirePackage{upquote}
+% requires the package xcolor with at least [dvipsnames] loaded, preferably RGB colorspace
+
+% Custom indexing
+%\newcommand{\indexfonction}[1]{\index[code]{#1@\texttt{#1}}}
+
+\definecolor{Cgreen}{RGB}{0,128,0}%
+\definecolor{Cgreen}{RGB}{0,128,0}%
+\definecolor{Cred}{RGB}{184,0,0}%
+
+% Define the commands to customise the displayed appearance of R functions, variables, etc.
+% both in the text body and in the listings;
+\newcommand{\Rf}[1]{\texttt{\textcolor{BrickRed}{{#1}}}}      % for functions (keywords in listings)
+\newcommand{\Rt}[1]{\texttt{\textcolor{BurntOrange}{{#1}}}}   % for text strings (strings used in listings)
+\newcommand{\Rl}[1]{\texttt{\textcolor{RoyalBlue}{{#1}}}}     % for logical values (emph in listings)
+\newcommand{\Rv}[1]{\texttt{\textcolor{OliveGreen}{{#1}}}}    % for variables (not used in listings)
+\newcommand{\Rs}[1]{\texttt{\upshape\textcolor{Black}{{#1}}}} % for generic script (not used in listings)
+\newcommand{\R}{\texttt{R}\xspace}                            % to typeset "R" in typewriter text
+
+\lstdefinelanguage{Renhanced}[]{R}{% Define variant of R language; loads default R functions as keywords
+  %alsoletter={._}, % add to the list of letters (parses sequences of symbols only) not comma-separated
+  morekeywords={%
+    aes,as.factor,acf,ar,arima,arima.sim,as.double,as.vector,cmpfun,colMeans,colSums,det,%
+    facet_grid,factorial,geom_line,ggplot,head,is.na,is.null,labs,ks.test,mapply,melt,ms,%
+    nlmin,qplot,read.csv,read.csv2,read.table,replicate,row.names,rowMeans,rowSums,%
+    set.seed,seasonal,str,sys.time,system.time,t,t.test,ts.plot,which.max,which.min,write.csv2%
+  },%
+  deletekeywords={date,par,q,coefficients,residuals,title}, % remove these keywords from the default list for R
+  escapeinside={(*@}{@*)}, % parses (*@ text within @*) with LaTeX
+  texcl=true, % Escape to LaTeX in R comments, after #
+  otherkeywords={:,;,^,!=,==,\~,\$,&,\%*\%,\%/\%,\%\%,\%in\%,\%o\%,\%x\%,\%>\%}, % keywords containing symbols
+  emph={NULL,NA,FALSE, TRUE,T,F} % define a list of word to emphasise
+}
+
+\lstset{
+  language=Renhanced,%
+  %backgroundcolor=\color{gris95},                  % background color
+  basicstyle=\normalsize \ttfamily \color{Black},   % baseline style
+  keywordstyle=\Rf,                                 % style of keywords
+  stringstyle=\Rt,                                  % style of strings
+  emphstyle=\Rl ,                                   % style for emphasised text
+  commentstyle=\rmfamily \slshape \color{Cgreen},   % style of the comments
+  extendedchars=false,                              % to avoid having listings messing with non-ASCII character treatment.
+  columns=flexible,%
+  upquote=true,                                     % to display ' ' as a straight quotes, as opposed to ‘ ’
+  keepspaces=true,                                  % for keeping indentation from other editors
+  showstringspaces=false,                           % don't show placeholders for space in text strings
+  xleftmargin=5pt,%
+  xrightmargin=5pt,%
+  frame=single,                                     % frame arround the code
+  frameround=tttt,                                  % frame with round corners
+  numbers=none,                                     % do not number lines of code
+  numberstyle=\scriptsize,%
+  firstnumber=last%
+  %index=[1][keywords]
+  % indexstyle=\lstindexmacro
+}
+
+\lstnewenvironment{Sinput}{
+  \lstset{%
+  language={Renhanced},%
+  basicstyle= \scriptsize \ttfamily \color{Black}%
+}
+}{}
+
+\lstnewenvironment{Soutput}{
+  \lstset{%
+    language={Renhanced},%
+    basicstyle=\scriptsize\ttfamily\color{Black},%
+    keywordstyle=\color{Black},% style for keyword
+    emphstyle=\color{Black},% define the way to emphasise
+    stringstyle=\color{Black}%
+  }%
+}{}
+
+
+\renewcommand{\lstindexmacro}[1]{%
+  \ifcsname alreadyindexed#1\endcsname %
+    % do nothing, the keyword has already been indexed
+  \else
+    % globally define the stopper macro
+    \global\expandafter\let\csname alreadyindexed#1\endcsname\empty %
+    % index the keyword
+    \index[code]{#1@\texttt{#1}}%
+  \fi
+}
+
+% Define command \lil of in-line listings, with syntax highlighting for keywords
+\newcommand{\lil}{\lstinline[language={Renhanced}]}
+
+\endinput

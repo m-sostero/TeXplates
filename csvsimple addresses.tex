@@ -1,0 +1,37 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{csvsimple}
+
+\author{Matteo Sostero}
+\date{\today}
+
+\begin{document}
+
+\newcommand{\ifmale}[2]{\ifthenelse{\equal{\gender}{m}}{#1}{#2}}
+\noindent
+\csvreader[head to column names]{address.csv}{}{%
+  \begin{tcolorbox}[
+    colframe=darkgray,%
+    colback=White,%
+    arc=0mm,%
+    width=(\linewidth-2pt)/2,%
+    equal height group=letter,%
+    before=,%
+    after=\hfill,%
+    fonttitle=\bfseries,%
+    adjusted title={Letter to \name}%
+    ]
+  \ifthenelse{\equal{\degree}{}}{\ifmale{Mr.}{Ms.}}{\degree}~\givenname~\name\\
+  \street\\\zip~\location
+  \tcblower
+  {\itshape Dear \ifmale{Sir}{Madam},}\\
+  we are pleased to announce you a bonus value of \bonus\%{} which will be delivered to \location\ soon.\\ \ldots
+  \end{tcolorbox}
+}
+
+\end{document}

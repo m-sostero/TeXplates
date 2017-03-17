@@ -1,0 +1,57 @@
+\documentclass[11pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows,shapes}
+\pgfdeclarelayer{bg}		% declare background layer
+\pgfsetlayers{bg,main} % set the order of the layers (main is the standard layer)
+
+\begin{document}
+
+% Define block styles
+\tikzstyle{dec} = [diamond, draw, fill=red!20, text width=5em, text badly centered, node distance=4cm, inner sep=0pt]
+\tikzstyle{nor} = [rectangle, draw, fill=blue!20, text width=3em,minimum height=3em, text centered,node distance=2cm and 6cm]
+\tikzstyle{raw} = [circle, draw, fill=green!20,text width=3em, text centered, rounded corners, minimum height=4em,node distance=2cm]
+\tikzstyle{ann} = [draw=none,fill=none,right,node distance=2cm,text width=6em, text centered]
+\tikzstyle{line} = [draw, -latex']
+
+\begin{tikzpicture}[node distance = 2cm, auto,node distance=2cm, auto,scale=0.72, every node/.style={transform shape}]
+% Place nodes
+\onslide<4->{\node [dec] (final) {};}
+\onslide<3->{\node [dec ,below left of=final] (dec1) {};}
+\onslide<2->{\node [nor, below left of=dec1] (nor11) {};}
+\node [raw, below of=nor11] (raw11) {};
+\onslide<2->{\node [nor, below right of=dec1] (nor12) {};}
+\node [raw, below of=nor12] (raw12) {};
+\onslide<3->{\node [dec, below right of=final] (dec2) {};}
+\onslide<2->{\node [nor, below left of=dec2] (nor21) {};}
+\node [raw, below of=nor21] (raw21) {};
+\onslide<2->{\node [nor, below right of=dec2] (nor22) {};}
+\onslide<2->{\node [ann, right of=nor22]{Normalised\\ indicators};}
+\node [raw, below of=nor22] (raw22) {};
+\node [ann, right of=raw22] {``Raw''\\ indicators};
+% Draw edges
+\onslide<4->{
+	\path [line] (dec1) -- (final);
+	\path [line] (dec2) -- (final);
+}
+\onslide<3->{
+	\path [line] (nor11) -- (dec1);
+	\path [line] (nor12) -- (dec1);
+	\path [line] (nor21) -- (dec2);
+	\path [line] (nor22) -- (dec2);
+}
+\onslide<2->{
+	\path [line] (raw11) -- (nor11);
+	\path [line] (raw12) -- (nor12);
+	\path [line] (raw21) -- (nor21);
+	\path [line] (raw22) -- (nor22);
+}
+% Brace
+\onslide<4->{
+	\draw [decorate,decoration={brace,amplitude=10pt,raise=4pt},yshift=0pt] (4.2,1) -- (4.2,-3) 
+	node [black,midway,xshift=0.5cm,text width=6em,text centered] {Aggregation\\ nodes};
+}
+\end{tikzpicture}
+
+\end{document}

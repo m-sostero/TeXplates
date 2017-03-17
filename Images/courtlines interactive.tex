@@ -1,0 +1,85 @@
+\documentclass[10pt,xcolor={dvipsnames}]{beamer}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{hyperref}
+\usepackage{ifthen}
+\usepackage{animate}
+
+\begin{document}
+
+\def\nframes{7} 		% total number of frames
+\newcounter{m}		% counter for iterations
+\setcounter{m}{0}	% initialise counter at 0
+
+\begin{frame}[fragile]
+\begin{center}
+\begin{animateinline}[loop, poster = first, controls, palindrome,buttonsize=1em]{2}
+\whiledo{\them < \nframes}{ %main loop
+	\begin{tikzpicture}[scale=6]
+	%% Normal cars
+	\def\tick{0.04} 
+	\def\gap{0.2}
+	\def\xSettle{0.21}
+	\def\xSusp{0.52}
+	\def\xJail{0.27}
+	\draw[thick]  (0,\gap) node[above left] {0} -- (1,\gap) node[above right] {1} node[right, xshift=12pt] {Normal/inferior car};
+	\draw (0,\gap+\tick) -- (0,\gap-\tick);
+	\draw (\xSettle,\gap+\tick) -- (\xSettle,\gap-\tick);
+	\draw (\xSettle+\xSusp,\gap+\tick) -- (\xSettle+\xSusp,\gap-\tick);
+	\draw[gray,thin, dashed] (\xSettle+\xSusp,\gap+\tick) -- (\xSettle+\xSusp,-\gap-\tick);
+	\draw (1,\gap+\tick) -- (1,\gap-\tick);
+	\node[below] at (\xSettle/2,\gap) {$x_2$};
+	\node[below] at (\xSettle+\xSusp/2,\gap) {$x_3$};
+	\node[below] at (\xSettle+\xSusp+\xJail/2,\gap) {$x_4$};
+	\draw [decorate,decoration={brace,amplitude=4pt},yshift=2pt] (0,\gap) -- (\xSettle ,\gap) 
+		node [midway, yshift=0.4cm] {\pgfmathparse{\xSettle*100} \pgfmathprintnumber[precision=2]{\pgfmathresult}$\%$ };
+	\draw [decorate,decoration={brace,amplitude=4pt},yshift=2pt] (\xSettle ,\gap) -- (\xSettle+\xSusp ,\gap) 
+		node [midway, yshift=0.4cm] {\pgfmathparse{\xSusp*100} \pgfmathprintnumber[precision=2]{\pgfmathresult}$\%$};
+	\draw [decorate,decoration={brace,amplitude=4pt},yshift=2pt] (\xSettle+\xSusp ,\gap) -- (1,\gap) 
+		node [midway, yshift=0.4cm] {\pgfmathparse{\xJail*100} \pgfmathprintnumber[precision=2]{\pgfmathresult}$\%$};
+	
+	%% Luxury Cars
+	\def\xAcqu{\them*0.07}
+	
+	\def\xSettle{0.20}
+	\def\xSusp{0.42}
+	\def\xJail{0.38}
+	\pgfmathsetmacro\xSettle{\xSettle*(1-\xAcqu}
+	\pgfmathsetmacro\xSusp{\xSusp*(1-\xAcqu}
+	\pgfmathsetmacro\xJail{\xJail*(1-\xAcqu}
+	\draw[thick]  (0,-0.2) node[above left] {0} -- (1,-0.2) node[above right] {1} node[right, xshift=12pt] {Luxury car};
+	\draw (0,-\gap+\tick) -- (0,-\gap-\tick);
+	\draw[Green, thick] (\xAcqu,-\gap+\tick) 		-- (\xAcqu,-\gap-\tick);
+	\draw[Green, thick] (0,-\gap) 								-- (\xAcqu,-\gap);
+	\draw (\xAcqu+\xSettle,-\gap+\tick) 					-- (\xAcqu+\xSettle,-\gap-\tick);
+	\draw[Red,thick] (\xAcqu+\xSettle+\xSusp,-\gap+\tick) 	-- (\xAcqu+\xSettle+\xSusp,-\gap-\tick);
+	\draw[Red, thick] (\xAcqu+\xSettle+\xSusp,-\gap)		-- (1,-\gap);
+	\draw (1,-\gap+\tick) 													-- (1,-\gap-\tick);
+	\node[below] at (\xAcqu/2,-\gap) {$x_1$};
+	\node[below] at (\xAcqu+\xSettle/2,-\gap) {$x_2$};
+	\node[below] at (\xAcqu+\xSettle+\xSusp/2,-\gap) {$x_3$};
+	\node[below] at (\xAcqu+\xSettle+\xSusp+\xJail/2,-\gap) {$x_4$};
+	\draw[decorate,decoration={brace,amplitude=4pt},yshift=2pt] (0,-\gap)	 -- (\xAcqu ,-\gap)
+			node [midway, yshift=0.4cm] {\pgfmathparse{\xAcqu*100} \pgfmathprintnumber[precision=2]{\pgfmathresult}$\%$ };
+	\draw[decorate,decoration={brace,amplitude=4pt},yshift=2pt] (\xAcqu,-\gap)	 -- (\xAcqu+\xSettle ,-\gap) 
+		node [midway, yshift=0.4cm] {\pgfmathparse{\xSettle*100} \pgfmathprintnumber[precision=2]{\pgfmathresult}$\%$ };
+	\draw[decorate,decoration={brace,amplitude=4pt},yshift=2pt] (\xAcqu+\xSettle ,-\gap) -- (\xAcqu+\xSettle+\xSusp ,-\gap) 
+		node [midway, yshift=0.4cm] {\pgfmathparse{\xSusp*100} \pgfmathprintnumber[precision=2]{\pgfmathresult}$\%$};
+	\draw[decorate,decoration={brace,amplitude=4pt},yshift=2pt] (\xAcqu+\xSettle+\xSusp ,-\gap) -- (1,-\gap) 
+		node [midway, yshift=0.4cm] {\pgfmathparse{\xJail*100} \pgfmathprintnumber[precision=2]{\pgfmathresult}$\%$};
+	\end{tikzpicture}
+    \stepcounter{m}	% Update counter
+    
+    \ifthenelse{\them < \nframes}{
+            \newframe % while the counter runs, refresh frames
+    }{
+        \end{animateinline}\relax % break
+    }
+} % END \whiledo...
+\end{center}
+\end{frame}
+
+\end{document}

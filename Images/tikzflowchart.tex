@@ -1,0 +1,21 @@
+% Preamble: \usetikzlibrary{shapes.geometric,arrows,positioning} % \definecolor{Cblue}{RGB}{59,102,178}
+\tikzstyle{decision} = [draw, diamond, fill=Cblue!40, text width=6.5em, text centered, inner sep=0pt]
+\tikzstyle{block} =		[draw,rectangle,rounded corners, fill=Cblue!40,text width=8em,node distance=1.5cm, text centered]
+\tikzstyle{line} = [draw, -latex']
+    
+\begin{tikzpicture}[node distance=2cm, auto,scale=0.6, every node/.style={transform shape}]
+% Place nodes
+\node [block] 																							(init) 				{set initial value (guess) of $x$};
+\node [block, below of=init]											 					(val) 				{set value of $a$ and $\varepsilon$};
+\node [block, below of=val,node distance=2cm]						(evaluate)	{compute: \[x_n \leftarrow \frac{1}{2}\left( x + \frac{a}{x} \right)\]};
+\node [decision, below of=evaluate,node distance=3cm]	(decide) 		{check:\\ $| x_n - x | < \varepsilon $ ?};
+\node [block, left of=decide, node distance=4.2cm]				(update) 		{update $x$:\\$ x \leftarrow x_n$};
+\node [block, below of=decide, node distance=2.75cm] 		(stop) 			{stop\\ show result};
+% Draw edges
+\path [line] (init) -- (val);
+\path [line] (val) -- (evaluate);
+\path [line] (evaluate) -- (decide);
+\path [line] (decide) -- node {yes}(stop);
+\path [line] (decide) -- node {no}(update);
+\path [line] (update) -- (evaluate);
+\end{tikzpicture}

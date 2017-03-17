@@ -1,0 +1,176 @@
+\documentclass[10pt,a4paper]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\author{Matteo Sostero}
+\begin{document}
+
+\pagestyle{empty}
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=2cm, sibling distance=7cm]
+\tikzstyle{level 2}=[level distance=2cm, sibling distance=3.5cm]
+\tikzstyle{level 3}=[level distance=2cm, sibling distance=1.5cm]
+\tikzstyle{level 4}=[level distance=2cm, sibling distance=0.5cm]
+
+% Define styles for bags and leafs
+\tikzstyle{dec} = [rectangle, draw, text centered]
+\tikzstyle{nature} = [circle,draw=black,text centered]
+\tikzstyle{end} = [circle, minimum width=3pt,fill, inner sep=0pt]
+
+\centering
+
+\begin{tikzpicture}[grow=right,sloped]
+\node[dec]{23}
+child {
+	node[nature]{}   
+	child {
+		node[dec]{29}
+		child{
+			node[nature]{}
+			child{
+				node[end, label=right:{$0\quad (s=29)$}] {}
+				edge from parent
+				node[below]  {$1-q$}
+			}
+			child{
+				node[end, label=right:{$0 \quad (s=30)$}] {}
+				edge from parent
+				node[above] {$q$}
+			}
+			edge from parent
+			node[below] {$K_2$}
+		}
+		child{
+		node[nature]{}
+		child{
+			node[end, label=right:{$0\quad (s=29)$}] {}
+			edge from parent
+			node[below] {$1-p$}
+		}
+		child{
+			node[end, label=right:{$b\quad (s=31)$}] {}
+			edge from parent
+			node[above] {$p$}
+		}
+		edge from parent
+		node[above] {$R_2$}
+		}
+		edge from parent
+		node[below] {$1-q$}
+	}
+	child {
+		node[dec]{30}
+		child{
+			node[nature]{}
+			child{
+				node[end, label=right:{$0\quad (s=30)$}] {}
+				edge from parent
+				node[below] {$1-q$}   
+			}
+			child{
+				node[end, label=right:{$b\quad (s=31)$}] {}
+				edge from parent
+				node[above] {$q$}     
+			}
+			edge from parent
+			node[below] {$K_2$}
+		}
+		child{
+			node[nature]{}
+			child{
+				node[end, label=right:{$0\quad (s=30)$}] {}
+				edge from parent
+				node[below] {$1-p$}
+			}
+			child{
+				node[end, label=right:{$1\quad (s=32)$}] {}
+				edge from parent
+				node[above] {$p$}
+			}
+			edge from parent
+			node[above] {$R_2$}
+		}
+		edge from parent
+		node[above] {$q$} 
+	}
+	edge from parent
+	node[below] {$K_1$}   
+}
+child {
+	node[nature]{}
+	child {
+		node[dec]{29}
+		child{
+			node[nature]{}
+			child{
+				node[end, label=right:{$0\quad (s=29)$}] {}
+				edge from parent
+				node[below]  {$1-q$}
+			}
+			child{
+				node[end, label=right:{$0\quad (s=30)$}] {}
+				edge from parent
+				node[above] {$q$}
+			}
+		edge from parent
+		node[below] {$K_2$}
+		}
+		child{
+			node[nature]{}
+			child{
+				node[end, label=right:{$0\quad (s=29)$}] {}
+				edge from parent
+				node[below] {$1-p$}
+			}
+			child{
+				node[end, label=right:{$b\quad (s=31)$}] {}
+				edge from parent
+				node[above] {$p$}
+			}
+			edge from parent
+			node[above] {$R_2$}
+		}
+		edge from parent
+		node[below] {$1-p$}
+	}
+	child {
+	node[dec]{31}
+		child{
+			node[nature]{}
+			child{
+				node[end, label=right:{$b\quad (s=31)$}] {}
+				edge from parent
+				node[below] {$1-q$}
+			}
+			child{
+				node[end, label=right:{$1\quad (s=32)$}] {}
+				edge from parent
+				node[above] {$q$}
+			}
+			edge from parent
+			node[below] {$K_2$}
+		}
+		child{
+			node[nature]{}
+			child{
+				node[end, label=right:{$b\quad (s=31)$}] {}
+				edge from parent
+				node[below] {$1-p$}
+			}
+			child{
+				node[end, label=right:{$1\quad (s=33)$}] {}
+				edge from parent
+				node[above] {$p$}
+			}
+			edge from parent
+			node[above] {$R_2$}
+		}
+		edge from parent
+		node[above] {$p$} 
+	}
+	edge from parent
+	node[above] {$R_1$}
+};
+\end{tikzpicture}
+
+\end{document}

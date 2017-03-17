@@ -1,0 +1,121 @@
+% ---------------------------------------------------------------------
+% Custom package for article class
+% Matteo Sostero, 23/10/2013
+% ---------------------------------------------------------------------
+
+\ProvidesPackage{marticle}
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{ifthen}
+\RequirePackage{calc}
+\AtEndOfClass{\RequirePackage{microtype}}
+
+% ---------------------------------------------------------------------
+\RequirePackage[utf8]{inputenc}
+%\RequirePackage{mathpazo}
+\RequirePackage{libertine}
+\renewcommand*\ttdefault{txtt}
+\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+
+% Make ligatures searchable and copy-pastable
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\RequirePackage{mathtools}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{graphicx}
+\RequirePackage[rgb,usenames,dvipsnames]{xcolor}
+%\RequirePackage[british]{babel}
+%\RequirePackage{babel}
+\RequirePackage{csquotes}
+\RequirePackage{pdflscape}
+\RequirePackage{pdfpages}
+% ---------------------------------------------------------------------
+\RequirePackage{booktabs}
+\RequirePackage{multirow}
+\RequirePackage{dcolumn}
+\RequirePackage{todonotes}
+\RequirePackage{nicefrac}
+\RequirePackage{longtable}
+% ---------------------------------------------------------------------
+
+
+%% BibLaTeX-Chicago
+%\RequirePackage[
+%	authordate,
+%	backend=biber,
+%	natbib,
+%  	url=false, 
+% 	doi=false,
+%%  	backref=true,
+%  	eprint=false,
+%  	isbn=false]{biblatex-chicago}
+
+% BibLaTeX-Authoryear
+% Cross-references
+\RequirePackage[
+  style=authoryear,%authoryear-icomp,
+  backend=biber,
+  natbib=true,
+  url=false, 
+  doi=false,
+  backref=false,
+  eprint=false,
+  isbn=false
+]{biblatex}
+
+\RequirePackage[
+	pdfpagemode={UseOutlines},
+	colorlinks,
+	citecolor={Blue},
+	linkcolor={Blue},
+	urlcolor={Blue},
+	pdfstartview={FitV},
+	unicode,
+	breaklinks=true
+]{hyperref}
+
+\RequirePackage[
+	open,
+	openlevel=0,
+	atend
+ ]{bookmark}
+
+\RequirePackage[noabbrev]{cleveref}
+
+% Customize BiBLaTeX  
+%\setlength\bibitemsep{1.5\itemsep}
+%
+%\let\oldbibliography\printbibliography%
+%\renewcommand{\printbibliography}[1]{%
+%  \phantomsection %
+%  \addcontentsline{toc}{section}{References} %
+%  \oldbibliography{#1} %
+%}
+
+\let\oldbibliography\printbibliography%
+\renewcommand{\printbibliography}[1]{%
+  \oldbibliography[heading=bibintoc]{#1} %
+}
+
+% Commands for quotation marks
+\newcommand{\qm}[1]{‘#1’}
+\newcommand{\dqm}[1]{“#1”}
+\newcommand{\gm}[1]{«#1»}
+\newcommand{\ie}[1]{\textit{i.\,e.,}}
+\newcommand{\eg}[1]{\textit{e.\,g.,}}
+\usepackage{xspace}
+%--------------------------------------------------------------------
+% Enumeration style
+% \RequirePackage{enumitem}
+% \renewcommand{\labelenumi}{\roman{enumi})}
+% \renewcommand{\labelenumii}{\roman{enumi}.\alph{enumii})}
+
+% Equation numbering
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%\numberwithin{equation}{section}
+
+\endinput

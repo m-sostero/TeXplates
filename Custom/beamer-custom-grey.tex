@@ -1,0 +1,115 @@
+\ProvidesClass{mbeamer}
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{ifthen}
+\RequirePackage{calc}
+
+\AtEndOfClass{\RequirePackage{microtype}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
+\ProcessOptions*
+\LoadClass{beamer}
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+
+\RequirePackage[british]{babel}
+\RequirePackage{etex}
+
+% Fonts
+\usepackage{mathpazo}
+\RequirePackage{libertine}
+\renewcommand*\ttdefault{txtt}
+
+%\renewcommand*\sfdefault{\sfdefault}  		% Only if the base font of the document is to be sans serif
+%\renewcommand*\ttdefault{lmtt}						% use latin modern typewriter for typewriter fonts (i.e., listings)
+%\renewcommand*\sfdefault{lmss}						% use latin modern sans serif for main text
+%\RequirePackage[adobe-utopia]{mathdesign}  		% use Adobe Utopia for serif text (i.e., mainly titles) and Mathdesign for math fonts
+%\RequirePackage{fourier}
+%\RequirePackage{DejaVuSansCondensed}
+%\RequirePackage[scaled=.77]{beramono}
+
+% Font features
+\RequirePackage{lettrine}
+\RequirePackage{accents}
+\RequirePackage{xspace}
+
+% Math
+\RequirePackage{amsmath}
+\RequirePackage{mathtools}
+\RequirePackage{nicefrac}
+
+\renewcommand*{\dot}[1]{\skew{2}{\accentset{\mbox{\bfseries .}}}{{#1}}}
+\newcommand*{\Chat}{\skew{3}{\hat}{c}}
+\newtheorem{prop}{Proposition}
+
+% Graphics
+\RequirePackage{fancybox,graphicx}
+\RequirePackage{pgfpages}
+\RequirePackage{animate}
+\RequirePackage{pgfplots}
+\usetikzlibrary{intersections}
+\pgfplotsset{compat=newest}
+	
+% Sweave
+\RequirePackage{sweave}
+
+% Tables
+\RequirePackage{booktabs}
+
+% Miscellaneous
+\RequirePackage[os=win]{menukeys}
+
+% Custom functions
+\colorlet{Bgreen}{green!50!black} 
+\definecolor{Bblue}{rgb}{0.23,0.4,0.7}
+
+\newenvironment{proenv}{\only{\setbeamercolor{local structure}{fg=Bgreen}}}{}
+\newenvironment{conenv}{\only{\setbeamercolor{local structure}{fg=Red}}}{}
+
+\newcommand*\proitem{%
+  \item[\color{Bgreen}\scalebox{0.8}{$\blacktriangleright$}]}
+\newcommand*\conitem{%
+  \item[\color{Red}\scalebox{0.8}{$\blacktriangleright$}]}
+
+\newcommand{\Rv}[1]{\texttt{\textcolor{OliveGreen}{{#1}}}}
+\newcommand{\Rf}[1]{\texttt{\textcolor{BrickRed}{{#1}}}}
+\newcommand{\Rt}[1]{\texttt{\textcolor{RoyalPurple}{{#1}}}}
+\newcommand{\Rs}[1]{\texttt{\upshape \textcolor{Black}{{#1}}}}
+\newcommand{\R}{\texttt{R}\xspace}
+
+\definecolor{higlblue}{rgb}{0.23,0.40,0.70}% use structure theme to change
+\newcommand{\highld}[1]{\textcolor<2>{higlblue}{#1}}
+\newcommand{\highl}[1]{\textcolor{higlblue}{#1}}
+
+\newenvironment{myquote}{\list{}{\leftmargin=0pt\rightmargin=10pt}\itshape\item[]}{\endlist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer settings
+
+\setbeamertemplate{navigation symbols}{}
+
+% define \hfilll command to replace \hfill in title alignment
+\newcommand{\hfilll}{\hspace{0pt plus 1 filll}}
+
+%% Glossy pretty look for the presentation and transparency (w/o overlays and animations) versions!
+\mode<beamer|trans>{
+\useoutertheme[glossy]{wuerzburg} %nofootline
+\useinnertheme[shadow,realshadow]{chamfered}
+\usecolortheme{shark}
+}
+
+\setbeamertemplate{frametitle continuation}[from second][(cont'd)]
+\usefonttheme{serif} % [stillsansseriftext,stillsansserifsmall]
+
+%% Save up on ink for the 4-up handouts
+\mode<handout>{
+\setbeamertemplate{footline}[frame number]
+\setbeamercolor{background canvas}{bg=white}
+\usecolortheme[named=black]{structure} 
+%\useoutertheme[nofootline]{wuerzburg}
+%\useinnertheme[outline]{chamfered}
+
+\pgfpagesuselayout{4 on 1}[a4paper, border shrink=10mm, landscape]
+\pgfpagesuselayout{4 on 1}[a4paper,border shrink=3mm,landscape]
+%\pgfpagesuselayout{resize to}[a4paper, landscape, border shrink=3mm]
+}

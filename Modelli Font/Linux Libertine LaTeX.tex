@@ -1,0 +1,36 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[osf]{libertine}
+\usepackage{metalogo}
+\usepackage{booktabs}
+\author{Matteo Sostero}
+\title{Linux Libertine \LaTeX{} Showcase}
+
+\begin{document}
+
+\newcommand{\uni}[1]{\symbol{"#1}}
+\maketitle
+
+\centering
+
+\begin{tabular}{ll}
+\toprule
+roman & abcdefghijklmnopqrstuvwxyz\\
+italic & \emph{abcdefghijklmnopqrstuvwxyz}\\
+capitals & \uppercase{abcdefghijklmnopqrstuvwxyz}\\
+small capitals & \textsc{abcdefghijklmnopqrstuvwxyz}\\
+numbers & 1234567890 \\
+common ligatures & ff fi fj fl ffi ffl ffj Th Qu\\
+quotations & ‘bla’ “bla” «bla»\\
+diacritics & ì è é ò ç à È û ê ë\\
+common symbols & \& @ £ \$ \% ‰ / \textbackslash{} [ ] \{ \} ( ) = ?  ' \# °  \_* \~{} \^{} - -- ---  ·  \\
+exotic symbols & ± ¼ ½ ¾ ⅓ §  ‰  ¶ № ‽ \\
+kerning \& variants& thief? thief)\\
+special glyphs & \char"000 \uni{E000} \uni{E009} \uni{E00A} \uni{E040} \uni{E001}  \uni{E002}  \uni{E003}  \uni{E13B} \uni{E13C} \\ 
+\bottomrule
+\end{tabular}
+
+\vfill
+
+\end{document}

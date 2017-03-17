@@ -1,0 +1,173 @@
+% ---------------------------------------------------------------------
+% Custom beamer package
+% Matteo Sostero, 25/10/2014
+% ---------------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{mbeamer}
+
+\newif\ifbeamer@xelatex
+\DeclareOptionBeamer{xelatex}[true]{\csname beamer@xelatex#1\endcsname}
+\ExecuteOptionsBeamer{xelatex=false}
+
+\ProcessOptionsBeamer
+
+\ifbeamer@xelatex % if the XeLaTeX option is enabled in \documentclass[xelatex]{beamer}
+  \RequirePackage{fontspec}
+  \usefonttheme{professionalfonts} % use own font handling
+  \setmainfont[Mapping=tex-text,Ligatures={Common}]{Linux Libertine O}
+  \setsansfont{Linux Biolinum O}
+  \setmonofont[Scale=MatchLowercase]{Lucida Console}
+  %\usepackage{xeCJK} 
+  %\setCJKmainfont{標楷體} % for brush stroke on Windows 
+  %\setmonofont[Ligatures={NoCommon},Scale=MatchLowercase,UprightFont={* Medium}]{Source Code Pro}
+\else
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[varg]{txfonts}
+  % Default fonts
+  \RequirePackage{libertine}
+  \renewcommand*\ttdefault{txtt}
+  \RequirePackage{amsmath}
+  \RequirePackage{etex}
+  % Make ligatures searchable and copy-pastable
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+  \RequirePackage{accents}
+\fi
+
+\RequirePackage{xspace}
+
+\RequirePackage{ifxetex}
+\RequirePackage{metalogo}
+
+%% Graphics %%
+
+\RequirePackage{fancybox,graphicx}
+\RequirePackage{pgfpages}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes,arrows,intersections,positioning,decorations.pathreplacing,calc}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+%% Font features %%
+\RequirePackage{lettrine}
+
+%% Custom indexing %%
+%\usepackage{multicol}
+%\usepackage{makeidx}
+
+%% load custom sweave (listings) package %%
+\RequirePackage{sweave} 
+
+%% Math %%
+%\RequirePackage{mathtools}
+\RequirePackage{nicefrac}
+%\RequirePackage{amsthm}
+\newtheorem{prop}{Proposition}
+
+%% Tables %%
+\RequirePackage{booktabs}
+
+%% Miscellaneous %%
+\RequirePackage[os=win]{menukeys}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Custom colors
+\definecolor{Cblue}{RGB}{59,102,178}
+\definecolor{Cgreen}{RGB}{0,128,0}
+\definecolor{Cred}{RGB}{184,0,0}
+
+\newcommand{\highld}[1]{\textcolor<2->{Cblue}{#1}}
+\newcommand{\highl}[1]{\textcolor{Cblue}{#1}}
+
+\newcommand*\proitem{\item[\color{Cgreen}\resizebox{!}{1ex}{$\blacktriangleright$}]}
+\newcommand*\conitem{\item[\color{Red}\resizebox{!}{1ex}{$\blacktriangleright$}]}
+
+\newcommand{\qm}[1]{‘#1’}
+\newcommand{\dqm}[1]{“#1”}
+\newcommand{\gm}[1]{«#1»}
+
+\newcommand{\ie}{\textit{i.\,e.},\xspace}
+\newcommand{\eg}{\textit{e.\,g.},\xspace}
+
+% define \authormail , 2-argument macro to get the author name and e-mail address 
+% with hyperlink in the title page and footer, while separating text and pdf strings
+\newcommand{\authormail}[2]{
+  \author[\href{mailto:#2}{#1}]{\texorpdfstring{#1 \\ \href{mailto:#2}{\textsf{#2}}}{#1}}
+}
+
+\newenvironment{myquote}{\list{}{\leftmargin=0pt\rightmargin=10pt}\itshape\item[]}{\endlist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{navigation symbols}{}
+
+% define \hfilll command to replace \hfill in title alignment
+\newcommand{\hfilll}{\hspace{0pt plus 1 filll}}
+
+% Glossy pretty look for the presentation and transparency (w/o overlays and animations) versions
+\mode<beamer|trans>{
+  \useoutertheme[glossy]{wuerzburg} %nofootline
+  \useinnertheme[shadow,realshadow]{chamfered}
+  \usecolortheme{shark}
+}
+
+\usefonttheme[stillsansserifsmall]{serif} % [stillsansseriftext,stillsansserifsmall]
+%\usefonttheme{professionalfonts} % for XeLaTeX
+
+%% Save up on ink for the 4-up handouts
+\mode<handout>{
+  \setbeamertemplate{footline}[frame number]
+  \setbeamercolor{background canvas}{bg=white}
+  \usecolortheme[named=black]{structure} 
+  %\useoutertheme[nofootline]{wuerzburg}
+  %\useinnertheme[outline]{chamfered}
+  \pgfpagesuselayout{4 on 1}[a4paper,border shrink=3mm,landscape]
+  %\pgfpagesuselayout{resize to}[a4paper, landscape]
+}
+\renewcommand{\footnoterule}{}
+
+\renewcommand\appendixname{Appendix}
+
+% Custom options for beamer class
+
+\newif\ifbeamer@tocsection
+\DeclareOptionBeamer{tocsection}[true]{\csname beamer@tocsection#1\endcsname}
+\ExecuteOptionsBeamer{tocsection=false}
+
+\newif\ifbeamer@blacklast
+\DeclareOptionBeamer{blacklast}[true]{\csname beamer@blacklast#1\endcsname}
+\ExecuteOptionsBeamer{blacklast=false}
+
+\ProcessOptionsBeamer
+
+%\mode<presentation>
+% Add outline with highlighted section name at the beginning of each section
+\ifbeamer@tocsection 
+  \AtBeginSection[]
+  {
+    \begin{frame}<handout:0>
+      \frametitle{Outline}
+      \tableofcontents[currentsection] 
+    \end{frame}
+  }
+\fi
+
+% black blank slide in presentation mode only
+\ifbeamer@blacklast
+  \AtEndDocument{
+    \bgroup
+    \setbeamercolor{background canvas}{bg=black}
+    \begin{frame}<trans:0|handout:0>[plain]{}
+    \end{frame}
+    \egroup
+  }
+\fi
+
+\endinput

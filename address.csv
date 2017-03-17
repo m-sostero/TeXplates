@@ -1,0 +1,7 @@
+name     , givenname, gender, degree   , street                         , zip   , location      , bonus        
+Maier    , Hans     , m     ,          , Am Bachweg 17                  , 10010 , Hopfingen     , 20           
+Huber    , Erna     , f     , Dr.      , {Moosstraße 32, Hinterschlag}  , 10020 , Örtingstetten , 30 
+Weißbäck , Werner   , m     , Prof. Dr., Brauallee 10                   , 10030 , Klingenbach   , 40           
+Siebener , Franz    , m     ,          , Blaumeisenweg 12               , 10040 , Pardauz       , 50           
+Schmitt  , Anton    , m     ,          , {Ælfred-Esplanade, Tæg 37}     , 10050 , Œresung       , 60 
+         

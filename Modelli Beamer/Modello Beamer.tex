@@ -1,0 +1,167 @@
+\documentclass{beamer} 						%Option 1: Slideshow	
+%\documentclass[handout]{beamer} 			%Option 2: Slides-based handouts
+%\usepackage{pgfpages}						%Option 2  _| 
+%\documentclass[10pt,a4paper]{article}		%Option 3: Article-style handouts
+%\usepackage{beamerarticle}					%Option 3  _|
+%\usepackage[latin1]{inputenc}			
+%\usepackage{graphicx}
+%\usepackage{tikz, pgf}
+%\usepackage{amsmath,mathptm,amsfonts,amssymb}
+
+%--- Handout Options --------------------------------------------------------------------------------
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]				%Option 2a (2/page, vertical)	|        
+%\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=2mm]	%Option 2b (4/page, landscape)	|
+%----------------------------------------------------------------------------------------------------
+
+\mode<presentation>
+{
+  \usetheme{PaloAlto}												%PaloAlto, CambridgeUS, Szeged, Berkeley	
+  \usecolortheme{seahorse} 											%seahorse (blue), crane (yellow),
+  \setbeamercovered{transparent}
+}
+
+\pgfdeclareimage[width=1.6cm]{university-logo}{tondo_gray}
+\logo{\pgfuseimage{university-logo}}
+
+\title{Title of the presentation}
+\subtitle{Some Subtitle}
+\author{Matteo Sostero}
+\institute{Universit\`{a} Ca' Foscari}
+
+\begin{document}
+\maketitle
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents[pausesections]
+\end{frame}
+
+% --- Items
+\section{Itemize}
+\begin{frame}
+    \frametitle{Title}
+    \begin{itemize}
+	\item First item (with a pause)
+	\pause	
+	\item Second item
+	\pause 
+	\item \alert{Important Warning!}
+	
+	\end{itemize}
+\end{frame}
+% -----
+
+% --- Vertical blocks
+\section{Blocks}
+\begin{frame}
+    \frametitle{Two blocks!} 
+    \begin{columns}
+	\begin{column}{5cm}
+	    \begin{block}{First Block}
+		\begin{itemize}
+		    \item Some things
+		    \item Other things
+		\end{itemize}
+		\end{block}
+		\end{column}
+\pause		
+	\begin{column}{5cm}
+	    \begin{block}{Second Block}
+		\begin{itemize}
+		    \item Some stuff
+		    \item Other stuff
+		\end{itemize}
+		\end{block}
+		\end{column}
+	\end{columns}
+
+\end{frame}
+% ---
+
+% --- Horizontal blocks
+\subsection{Some other blocks}
+\begin{frame}
+    \frametitle{Two\ldots different blocks!} 
+	
+	\begin{alertblock}{Important block}
+	    \begin{itemize}
+		\item First important thing\ldots
+		\pause
+		\item \ldots second important thing.
+	    \end{itemize}
+     \end{alertblock}	
+	
+	\pause
+
+	\begin{block}{Less important block}
+	    \begin{itemize}
+		\item First (less) important thing\ldots
+		\pause
+		\item \ldots second (less) important thing.
+	    \end{itemize}
+     \end{block}	
+\end{frame}
+% ---
+
+% --- Formulas
+\section{Formulas}
+\begin{frame}
+    \frametitle{Some impressive-looking formulas \ldots}
+    \begin{itemize}
+	\item Look at this one\ldots
+	\pause
+	\[ 	Z_2(g_2) = \sqrt{\frac{9A}{2}} \left\{1 - \frac{2}{9A} - \left(\frac{ 1-2/A }{ 1+\frac{g_2-\mu_1}{\sqrt{\mu_2}}\sqrt{2/(A-4)} }\right)^{\!1/3}\right\}  \]
+	\pause
+	\item \ldots rendered you speechless, didn't it?
+		
+	\end{itemize}
+\end{frame}
+% -----
+
+% --- Pictures
+\section{Graph}
+\begin{frame}
+    \frametitle{A graph!}
+	\pause    
+    Here is a graph made with R \ldots
+	\begin{figure}[hb]
+	\begin{center}
+	\pgfimage[height=5.5cm]{plot.pdf}
+	\end{center}
+	\end{figure}
+	\pause
+	(but now I'm just showing off, aren't I?)
+	
+\end{frame}
+% -----
+
+% --- Tabulars
+\section{Tabulars}
+\begin{frame}
+    \frametitle{Tabulars}
+
+\begin{itemize}
+		\item First tabular (centered) \medskip
+		
+		\begin{tabular}{ccc}
+  	    	Title left & & Title right  \\
+		 	\hline  	        
+  	        Left 1 & Center 1 & Right1  \\
+			Left 2 & Center 2 & Right2   
+		\end{tabular}
+		
+	    \item Second tabular \medskip
+	    
+	    \begin{tabular}{c|l}
+	        
+	        Left1 & Right1  \\
+			\hline	        
+	        Left2 & Right2 \\
+   	        Left3 & Right3 \\
+       	         
+	    \end{tabular}
+	\end{itemize}
+\end{frame}
+% ---
+
+\end{document}

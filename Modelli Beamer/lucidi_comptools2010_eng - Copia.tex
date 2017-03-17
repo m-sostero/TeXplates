@@ -1,0 +1,439 @@
+%\documentclass[ps,CFframes_inst]{beamer}
+\documentclass[handout,a4paper]{beamer} 			%Option 2: Slides-based handouts
+\usepackage{pgfpages}									%Option 2 
+\pgfpagesuselayout{4 on 1}[a4paper,landscape,border shrink=2mm]	%Option 2
+\usepackage{beamerprosper}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath,mathptm}
+
+\mode<handout>
+{
+  \usetheme{default}
+  % or ...
+
+  \usecolortheme{crane}
+  
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+\pgfdeclareimage[width=1.6cm]{university-logo}{tondo_gray}
+\logo{\pgfuseimage{university-logo}}
+
+% \documentclass[pdf,slideColor,colorBG]{prosper}
+% \usepackage[mac]{inputenc}
+% \usepackage{pstricks,pst-node,pst-text,pst-3d}
+% \usepackage{amsmath}
+
+
+\title{Computational tools for \\economics and management}
+\subtitle{2009/2010}
+
+\author{Paolo Pellizzari}
+
+\begin{document}
+\maketitle
+
+% ---
+\begin{frame}
+    \frametitle{Computational tools}
+    \begin{itemize}
+        \item Instructor
+    
+        \item Course
+    
+        \item Contents
+	
+	\item Exam
+	
+	\item Miscellanea
+    \end{itemize}
+\end{frame}
+% ---
+
+% ---
+\section{Instructor}
+\begin{frame}
+    \frametitle{CompTools: instructor}
+
+\begin{itemize}
+	    \item Paolo Pellizzari: \texttt{paolop@unive.it}
+	
+  	    \item Student time \begin{tabular}{ccc}
+  	        
+  	         & Day & Time  \\
+		 \hline  	        
+  	        VE (S. Giobbe C/32) & Friday & 12.30 - 14.00  \\
+  	        
+  	        TV (S. Paolo) & Tuesday & 12.00 - 13.30
+  	    \end{tabular}
+	    
+	    \item \alert{There are exceptions due to relocation of the
+	    DMA}.  All changes to the schedule are published.
+	    
+	    \item Lectures \medskip
+	    
+	    \begin{tabular}{c|l}
+	        
+	        Wednesday & 10.30-12.00, S. Giobbe 3A  \\
+	        
+	        Thursday & 10.30-12.00, S. Giobbe 3A \\
+	        
+	        Friday & 10.30-12.00, S. Giobbe 3A \\
+	        
+	         
+	    \end{tabular}
+	\end{itemize}
+\end{frame}
+% ---
+
+% ---
+\subsection{Research}
+\begin{frame}
+    \frametitle{My research}
+
+\begin{itemize}
+	    \item<1-> Monte Carlo simulation
+	    	    
+	    \item<2-> Derivative assets and option pricing
+	    
+	    \item<3-> Artificial markets \alert<3>{(you may be 
+	    involved, more to come\ldots)}
+	    
+	    \item<4-> Agent-based models in economics and finance
+	    
+	\end{itemize}
+\end{frame}
+% ---
+
+% ---
+\section{Contents}
+\begin{frame}
+    \frametitle{CompTools: contents}
+ \begin{itemize}
+     
+     \item[] Topics
+     
+	 \item Introduction to Computational Economics
+     
+         \item Ramsey growth model: Excel
+	 
+	 \item Neural networks: Excel
+	 
+	 \item Optimal control: GAMS
+	 
+	 \item Portfolio selection (and Genetic Algorithms): \texttt{R}
+	 
+	 \item Genetic Algorithms (and portfolio selection): \texttt{R}
+     \end{itemize}
+\end{frame}
+% ---
+
+
+
+% ---
+\section{Course and exam}
+\begin{frame}
+    \frametitle{CompTools: course}
+    \begin{itemize}
+	\item Textbook: Kendrick D., Mercado, R., Amman H.,
+	"Computational Economics", Princeton University Press, 2006.
+	
+	\item The first two chapters (included in the program) can be 
+	downloaded at 
+	
+	\alert{Download the first chapter asap!}
+	
+	\item The authors' website is at
+
+	
+	\item Links to download software will be provided: GAMS and 
+	\texttt{R}. Handout by the instructor.
+	
+	\item Online material on the web page of the course\\
+
+
+	\item Handwritten notes and computer practice\ldots
+     \end{itemize}
+\end{frame}
+% -----
+
+% ----
+\begin{frame}
+    \frametitle{CompTools: examination}
+    \begin{itemize}
+    \item Written test with:
+    \begin{enumerate}
+        \item 10 multiple choices (one out of four);
+    
+        \item 2 open questions on models;
+    
+        \item 2 computer outputs to comment, solve or describe.
+    \end{enumerate}
+    
+    \item (Probably) oral test to get 25+.
+    
+    \item This course will be an \emph{agony} and \emph{you'll get
+    poor results} if you do not practice on a computer. Start now!
+
+\end{itemize}
+\end{frame}
+% ---
+
+% ---
+\section{One more thing}
+\begin{frame}
+    \frametitle{CompTools: misc} 
+    \begin{itemize}
+	\item Universit\`a, \emph{Universitas}\ldots Studio,
+	\emph{Studium}\ldots
+	
+	\item ``I'm interested in the future because I plan to stay
+	there for the next few years''
+
+	\item Presidenza di Facolt\`a, Faculty dean (email \texttt{presidec@unive.it}),
+	Pellizzari (email \texttt{paolop@unive.it})
+
+	\item Difensore degli studenti, students' defender:
+	\texttt{difenso@unive.it}\\
+% 	\texttt{\small http://venus.unive.it/urp/difensore.htm}
+	
+	\item Teaching evaluation forms
+\end{itemize}
+\end{frame}
+% ---
+
+% ---
+\section{Today}
+\begin{frame}
+    \frametitle{Today: computational economics at large} 
+    \begin{itemize}
+	\item Numerical analysis applied to economic problems (say,
+	linear and non-linear programming, optimization)
+	
+	\item Non standard computational tools for economic problems:
+	simulation, data-mining, neural networks, genetic algorithms
+	
+	\item Analysis of ``new'' models that are almost intractable
+	without computers.  Often the description of the model is
+	itself an algorithm or a fragment of code.
+	
+	\begin{block}{Features}
+	    \begin{enumerate}
+	        \item Lots of agents
+	    
+	        \item Massive interaction
+	    
+	        \item Feedback effects, non-linearities and emergent 
+		behaviour
+	    \end{enumerate}
+       \end{block}	    
+
+    \end{itemize}
+\end{frame}
+% ---
+
+% ---
+\begin{frame}
+    \frametitle{Today: Ramsey growth model} 
+    \begin{itemize}
+	\item Consumption and investment (same as consumption and 
+	saving).
+	
+	\item Production function: capital is used to produce output.
+	
+	\item Capital accumulation relationship and consumption.
+	
+	\item Utility function
+
+	\begin{alertblock}{Intertemporal consumption}
+	    \begin{itemize}
+		\item More consumption in a period means more utility\ldots
+		
+		\item \ldots but also less investment and, hence, 
+		less consumption in the future.
+	    \end{itemize}
+       \end{alertblock}	    
+
+    
+    \end{itemize}
+\end{frame}
+% ---
+
+% ---
+\begin{frame}
+    \frametitle{April 22nd: announcements} 
+    \begin{itemize}
+	\item Student time i(i.e. , office hours) is available in 
+	Treviso. No lectures there\ldots
+	
+	\item Next scheduled office hours:\bigskip
+	
+	\begin{tabular}{lcl}
+	    
+	    April Tue 27th & 10.00-11.30 & Ca' Dolfin (VE)  \\
+	    
+	    May Tue 4th & 12.00-13.30 & Treviso  \\
+	    
+	    May Fri 7th & 12.30-14.00 & S. Giobbe C/32  \\
+	    \hline
+	    
+	    \multicolumn{3}{c}{Then every Tue in TV and Fri in VE}\\
+	     
+	\end{tabular}
+	
+	\item I have uploaded the slides of the first lecture.
+	
+	\item Unfortunately, no other room is available.
+    
+    \end{itemize}
+\end{frame}
+% ---
+
+% --- 28/04/2010
+\begin{frame}
+    \frametitle{No Ramsey\ldots no party!} 
+    \begin{columns}
+	\begin{column}{5cm}
+	    \begin{block}{Ramsey}
+		\begin{itemize}
+		    \item Maximize disc. utility
+		
+		    \item Capital as function of capital, production 
+		    and consumption
+		
+		    \item Terminal condition for $K$
+		\end{itemize}
+		\end{block}
+		\end{column}
+\pause		
+	\begin{column}{5cm}
+	    \begin{block}{Fish (natural resource)}
+		\begin{itemize}
+		    \item Maximize disc. cashflows
+		
+		    \item Fish as function of fish and fished quantity
+		
+		    \item Terminal condition (to avoide depletion)
+		\end{itemize}
+		\end{block}
+		\end{column}
+	\end{columns}
+
+\end{frame}
+% ---
+
+% --- 28/04/2010
+\begin{frame}
+    \frametitle{Mine management} 
+    \begin{columns}
+	\begin{column}{5cm}
+	    \begin{block}{Ramsey}
+		\begin{itemize}
+		    \item Maximize disc. utility
+		
+		    \item Capital as function of capital, production 
+		    and consumption
+		
+		    \item Terminal condition for $K$
+		\end{itemize}
+		\end{block}
+		\end{column}
+\pause		
+	\begin{column}{5cm}
+	    \begin{block}{Oil extraction}
+		\begin{itemize}
+		    \item Maximize disc. cashflows net of costs
+		
+		    \item Oil left in the mine as function of oil and 
+		    extracted quantity
+		
+		    \item Terminal condition (zero)
+		    
+		    \item Costs depend on the oil left:
+		    $$
+		    c(s,x)=-\frac{x^{2}}{s},
+		    $$
+		    where $s$ is left and $x$ is extracted.
+		    
+		\end{itemize}
+		\end{block}
+		\end{column}
+	\end{columns}
+
+\end{frame}
+% ---
+
+
+
+% schelling from now on
+
+% ----
+\overlays{7}{
+\begin{slide}{Schelling's segregation model}
+    \begin{itemstep}
+	\item Why do we have segregated neighborhoods even though
+	people are not racist?  (Harlem, China Town, Little Italy,
+	Scampia, Brancaccio)
+	
+	\item ``I'm not racist!  I just prefer to live where the
+	majority of residents is similar to me''
+	
+	\item What's the effect of this weak preference at the micro
+	level?
+	
+	\item The model:
+	\begin{enumerate}
+	    \item Red and green agents live in a square grid;
+	
+	    \item They change location if more than 60\% of neighbors
+	    are different;
+	
+	    \item There is no other rule.
+	\end{enumerate}
+	
+	\end{itemstep}
+
+\end{slide}
+}
+% ----- 
+
+% ----
+\overlays{5}{
+\begin{slide}{Micromotives and macrobehaviour}
+    \begin{itemstep}
+	\item A weak personal preference is not racism but\ldots
+	
+	\item When you move you trigger further movements ending in strongly 
+	polarized situations.
+			
+	\onlySlide*{3}{\item ``We should help our brothers first and the foreigner is not my
+	brother, his skin has a different color\ldots Migrants?
+	That's a pity but the crematorium at Santa Bona is not ready
+	yet.''
+	
+	\medskip P. Stiffoni, MP}
+	
+	\onlySlide*{4}{\item ``Spreading hatred is a crime, not an
+	expression of freedom of speech that must be protected.''
+	
+	\medskip G. Stella, Magazine Corriere della Sera, 17/06/04}
+
+	\onlySlide*{5}{\item ``It's as if crowds are always wrong and
+	individuals are always right.  However, much care is needed to
+	avoid deducting any rule of conduct from this observation.''
+	
+	\medskip Boris Vian			}
+	
+	\end{itemstep}
+
+\end{slide}
+}
+% ----- 
+
+
+
+
+\end{document}

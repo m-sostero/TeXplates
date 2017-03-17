@@ -1,0 +1,51 @@
+\documentclass[12pt,titlepage]{article}
+\usepackage{geometry}
+\geometry{
+	paperheight=600pt,
+	paperwidth=450pt,
+	hmargin=0.1\paperwidth,
+	vmargin=0.11\paperwidth,
+	headheight=15pt,
+	nomarginpar}
+
+\linespread{1.15}
+	
+\usepackage[
+	pdfpagemode={UseOutlines},
+	colorlinks,
+	citecolor={black},
+	linkcolor={black},
+	pdfstartview={Fit},
+	pdfview={Fit},
+	pdfpagelayout={SinglePage},
+	breaklinks=true
+]{hyperref}
+
+\usepackage{fancyhdr,emptypage}
+\pagestyle{fancy}
+\fancyfoot[C]{\thepage}
+\fancyhead{} % Clear header and footers
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[C]{\nouppercase{\leftmark}}
+
+\usepackage{fontspec}
+\setmainfont[Mapping=tex-text,Ligatures={Common}]{Palatino Linotype}
+\usepackage{microtype}
+
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+\usepackage{booktabs}
+\author{Matteo Sostero}
+\title{iPad document example}
+
+\begin{document}
+
+\maketitle
+\clearpage
+\tableofcontents
+\clearpage
+
+\blindmathpaper
+
+\end{document}

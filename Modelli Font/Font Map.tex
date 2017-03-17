@@ -1,0 +1,15 @@
+\documentclass[12pt]{article}
+\usepackage{pgffor}
+\usepackage{fontspec}
+
+\newfontfamily\mp{Minion Pro}
+\DeclareTextFontCommand{\textcom}{\mp}
+
+\begin{document}
+
+\parindent=0pt
+\foreach \x in {1,...,1600}{ %LL 2673
+   \textcom{\XeTeXglyph\x} \quad
+}
+
+\end{document}

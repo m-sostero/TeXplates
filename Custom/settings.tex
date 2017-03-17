@@ -1,0 +1,60 @@
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+
+% Fonts and font features
+\usepackage{amsmath}
+\usepackage[osf]{libertine}
+% \usepackage[sc]{mathpazo}
+% \linespread{1.05}         % Palatino needs more leading (space between lines)
+% \usepackage{accents}
+% \renewcommand*{\dot}[1]{%
+%   \accentset{\mbox{\bfseries .}}{#1}}
+%\usepackage[cmintegrals, cmbraces, libertine]{newtxmath}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+% Graphics, plots and layout
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+
+\usepackage{pdflscape}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{multirow}
+
+% Cross-references
+\usepackage[
+	pdfpagemode={UseOutlines},
+	bookmarks=true,
+	bookmarksopen=true,
+	bookmarksopenlevel=0,
+	bookmarksnumbered=true,
+	hypertexnames=true,
+	colorlinks,
+	citecolor={Blue},
+	linkcolor={ForestGreen},
+	pdfstartview={FitV},
+	unicode,
+	breaklinks=true
+]{hyperref}
+
+\usepackage[noabbrev]{cleveref}
+\usepackage[longnamesfirst]{natbib} 
+
+% To-Do notes
+\usepackage{todonotes}
+\setlength{\marginparwidth}{2cm}
+
+% Changes in settings
+
+% Enumeration style
+\usepackage{enumitem}
+\renewcommand{\labelenumi}{\roman{enumi})}
+\renewcommand{\labelenumii}{\roman{enumi}.\alph{enumii})}
+
+% Equation numbering
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\numberwithin{equation}{section}
+
+\usepackage{nicefrac}

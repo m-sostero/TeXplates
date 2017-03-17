@@ -1,0 +1,47 @@
+\documentclass[11pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows}
+\pgfdeclarelayer{bg}		% declare background layer
+\pgfsetlayers{bg,main} % set the order of the layers (main is the standard layer)
+
+\begin{document}
+
+\begin{frame}
+% Define block styles
+\tikzstyle{seller} =	[rectangle, draw, fill=blue!20, text width=2em, text centered,minimum height=2em, rounded corners]
+\tikzstyle{buyer} =	[circle, draw, fill=green!20,text width=1.5em, text centered]
+\tikzstyle{ann} =		[draw=none,fill=none]
+\tikzstyle{line} =		[draw, -latex',gray!90]
+\tikzstyle{exline} = [draw, -latex',black]
+
+\centering
+
+\begin{tikzpicture}
+% Place nodes
+\def\S{5}
+\def\B{8}
+\foreach \s in {1,...,\S} { \node [seller] at (-6+2*\s, 2) (seller\s)  {$S_\s$}; }
+\foreach \b in {1,...,\B} { \node [buyer] at (-6+4/3*\b,-2) (buyer\b) {$B_\b$}; }
+\begin{pgfonlayer}{bg}
+\onslide<2>{
+	\foreach \s in {1,...,\S} {
+		\path [exline] (buyer1) -- node {$p_{1\s}$} (seller\s);
+	}
+}
+\uncover<3->{
+	\foreach \b in {1,...,\B} {
+		\foreach \s in {1,...,\S} {
+		\path [line] (buyer\b) -> (seller\s);
+		}
+	}
+}
+\end{pgfonlayer}
+\end{tikzpicture}
+
+\end{frame}
+
+\end{document}
+
+
