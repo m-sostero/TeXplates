@@ -1,25 +1,27 @@
 %!TEX program = xelatex
-\documentclass[12pt, a4paper]{article}
-\usepackage[%
-	margin      = 1.2cm,%
-	paperwidth  = 161.25mm,%
-	paperheight = 215mm,%
-	head        = 5mm,%
-	foot        = 7mm,%
-	includehead,%
-	includefoot,%
-	headsep=0mm]
-	{geometry}
-	
-\usepackage{fontspec,polyglossia}
-\setdefaultlanguage{french}
-\defaultfontfeatures{Mapping=tex-text}
+\documentclass[12pt,a4paper]{article}
 
+\usepackage[%
+  margin = 1.2cm,%
+  paperwidth = 161.25mm,%
+  paperheight = 215mm,%
+  head = 5mm,%
+  foot = 7mm,%
+  includehead,%
+  includefoot,%
+  headsep=0mm]
+  {geometry}
+  
+\usepackage{polyglossia}
+\setdefaultlanguage{french}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures={Common,TeX}}
 \setmainfont{Linux Libertine O}
 \newfontfamily\cursivecyrillic{Propisi}[Scale=MatchLowercase]
 
 \usepackage{pgfplotstable,booktabs,longtable,array}
-\pgfplotsset{compat=1.7}
+\pgfplotsset{compat=1.14}
 
 \renewcommand{\arraystretch}{1.2}
 
@@ -35,20 +37,22 @@
 \pgfplotstabletypeset[%
 col sep=tab,%
 string type,%
+%
 create on use/Calligraphique/.style={create col/copy={Russe}},%
-columns={Russe,Calligraphique,Français},%
 columns/Russe/.style={column type=l},%
 columns/Calligraphique/.style={column type={>{\cursivecyrillic}l}},%
 columns/Français/.style={column type=l},%
+columns={Russe,Calligraphique,Français},%
+%
 begin table=\begin{longtable},%
 every head row/.append style={%
-	output empty row,%
-	before row={%
-		\toprule Russe & {\rmfamily Calligraphique} & Français \\ \midrule \endfirsthead % table header on first page
-		Russe & {\rmfamily Calligraphique} & Français \\ \midrule \endhead               % table header on following pages
-		\midrule \\ \endfoot                                                             % table footer on all pages bar the last one
-		\bottomrule \endlastfoot                                                         % table footer on last page
-		}
+  output empty row,%
+  before row={%
+    \toprule Russe & {\rmfamily Calligraphique} & Français \\ \midrule \endfirsthead % table header on first page
+    Russe & {\rmfamily Calligraphique} & Français \\ \midrule \endhead % table header on following pages
+    \midrule \\ \endfoot     % table footer on all pages bar the last one
+    \bottomrule \endlastfoot % table footer on last page
+    }
 },
 end table=\end{longtable}
 ]{vocabulaire.dat}

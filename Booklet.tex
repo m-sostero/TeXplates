@@ -1,5 +1,4 @@
 %!TEX program = xelatex
-
 \documentclass[a4paper,10pt,twoside,titlepage]{book}
 
 \usepackage{geometry}
@@ -7,22 +6,24 @@
 \geometry{layout=a5paper,landscape,headheight=14pt,layoutoffset={31mm,50mm},heightrounded,ignoremp}
 \geometry{showframe} % Show frame around page
 
-\usepackage{polyglossia,fontspec}
-\setmainlanguage{latin}
+\usepackage{polyglossia}
+\setmainlanguage{english}
 \setotherlanguages{russian,italian,french}
-\setotherlanguage[variant=ancient]{greek}
+\setotherlanguage{greek}
 
 \usepackage{fontspec}
-\defaultfontfeatures{Mapping=tex-text,Ligatures={Common}}
+\defaultfontfeatures{Ligatures={Common,TeX}}
 \setmainfont{Linux Libertine O}
 \newfontfamily\greekfont[Script=Greek,Language=Greek]{Linux Libertine O}
 
-\usepackage{lipsum}
+\usepackage{microtype}
+
+\usepackage{blindtext}
 
 \usepackage{fancyhdr,emptypage}
 \pagestyle{fancy}
 \fancyfoot[C]{}
-\fancyfoot[LE,RO]{\thepage
+\fancyfoot[LE,RO]{\thepage}
 \fancyhead{} % Clear header and footers
 \renewcommand{\headrulewidth}{0pt}
 \fancyhead[RO]{\nouppercase{\leftmark}}
@@ -32,22 +33,16 @@
 \author{Lorem Ipsum}
 
 \begin{document}
+
 \setpdftargetpages
 
 \maketitle
 \chapter{First chapter}
-\section{First Section}
 
-\lipsum[1]
-
-\lipsum[3-5] Alea jacta est.\footnote{\lipsum[6]}
-
-\section{Second section}
-\lipsum[7]
-
+\section{Greek}
 This is some text, with an ancient Greek quote: 
 \begin{quotation}
-\begin{greek}[variant=ancient]
+\begin{greek}
 μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος οὐλομένην, ἣ μυρί' Ἀχαιοῖς ἄλγε'
 ἔθηκε, πολλὰς δ' ἰφθίμους ψυχὰς Ἄϊδι προί̈αψεν ἡρώων, αὐτοὺς δὲ ἑλώρια
 τεῦχε κύνεσσιν οἰωνοῖσί τε πᾶσι, Διὸς δ' ἐτελείετο βουλή, ἐξ οὗ δὴ τὰ
@@ -60,17 +55,36 @@ from Homer's \textit{Iliad}  (\textgreek{Ιλιάς})
 
 Check if hyphenation occurs; ligatures: effect, afflicted, affiliate.
 
-\medskip
 
-\textit{Incipit} de \textfrench{«Guerre et Paix»} de Tolstoï («Война и мир» — Толстой)
+\section{Russian and French}
+
+\textfrench{«Guerre et Paix» de Tolstoï} (\textrussian{«Война и мир» — Толстой})
+
 \begin{quotation}
 \begin{french}
-— Eh bien, mon prince. Gênes et Lueques ne sont plus que des apanages, des поместья, de la famille Buonaparte. Non, je vous préviens que si vous ne me dites pas que nous avons la guerre, si vous vous permettez encore de pallier toutes les infamies, toutes les atrocités de cet Antichrist (ma parole, j’y crois) — je ne vous connais plus, vous n’êtes plus mon ami, vous n’êtes plus \textrussian{мой верный раб, comme vous dites.\footnote{Ну, князь, Генуя и Лукка — поместья фамилии Бонапарте. Нет, я вам вперед говорю, если вы мне не скажете, что у нас война, если вы еще позволите себе защищать все гадости, все ужасы этого Антихриста (право, я верю, что он Антихрист), — я вас больше не знаю, вы уж не друг мой, вы уж не мой верный раб, как вы говорите (франц.). <Переводы, за исключением специально отмеченных, принадлежат Л. Н. Толстому; переводы с французского языка не оговариваются. — Ред.>} Ну, здравствуйте, здравствуйте.} Je vois que je vous fais peur, садитесь и рассказывайте.
+— Eh bien, mon prince. Gênes et Lueques ne sont plus que des apanages,
+des поместья, de la famille Buonaparte. Non, je vous préviens que si
+vous ne me dites pas que nous avons la guerre, si vous vous permettez
+encore de pallier toutes les infamies, toutes les atrocités de cet
+Antichrist (ma parole, j’y crois) — je ne vous connais plus, vous
+n’êtes plus mon ami, vous n’êtes plus \textrussian{мой верный раб,
+comme vous dites.\footnote{Ну, князь, Генуя и Лукка — поместья фамилии
+Бонапарте. Нет, я вам вперед говорю, если вы мне не скажете, что у нас
+война, если вы еще позволите себе защищать все гадости, все ужасы
+этого Антихриста (право, я верю, что он Антихрист), — я вас больше не
+знаю, вы уж не друг мой, вы уж не мой верный раб, как вы говорите
+(франц.). <Переводы, за исключением специально отмеченных, принадлежат
+Л. Н. Толстому; переводы с французского языка не оговариваются. —
+Ред.>} Ну, здравствуйте, здравствуйте.} Je vois que je vous fais peur,
+садитесь и рассказывайте.
 \end{french}
 \end{quotation}
 
-\lipsum[8-15]
 
-\clearpage \pagestyle{empty} \hbox{} %ensures last recto page is empty
+\section{English}
+
+\Blindtext
+
+\clearpage \pagestyle{empty} \hbox{} % ensures last recto page is empty
 
 \end{document}

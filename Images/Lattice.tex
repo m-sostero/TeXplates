@@ -1,14 +1,15 @@
 \documentclass{standalone}
+
 \usepackage{tikz}
 \usetikzlibrary{matrix}
 
 \begin{document}
 \begin{tikzpicture}[>=stealth,sloped]
 \matrix (tree) [%
-  matrix of nodes,
-  minimum size=1cm,
-  column sep=3.5cm,
-  row sep=1cm,
+  matrix of nodes,%
+  minimum size=1cm,%
+  column sep=3.5cm,%
+  row sep=1cm%
 ]
 {
 	&		&	F	\\
@@ -24,4 +25,5 @@ A	&		&	E	\\
 \draw[->] (tree-4-2) -- (tree-3-3) node [midway,above] {$(1-p)p$};
 \draw[->] (tree-4-2) -- (tree-5-3) node [midway,below] {$(1-p)^2$};
 \end{tikzpicture}
+
 \end{document}

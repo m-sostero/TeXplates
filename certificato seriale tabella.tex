@@ -1,8 +1,11 @@
 \documentclass[10pt,a4paper]{article}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+
 \usepackage{datatool} % for mail merging
+
 \begin{document}
 \DTLloaddb{names}{namelist.csv}
 	\DTLforeach{names}{%   
@@ -10,7 +13,7 @@
 		\dg=degree, \name=Name,\dgn=Dgn, \sub=subject, \inst=inst, \place=place}{%
 		{
 		\centering
-		This is to certify that {\dg.}{\name}, {\dgn}  of {\sub}, {\inst}, {\place} \ldots
+		This is to certify that {\dg.}{\name}, {\dgn} of {\sub}, {\inst}, {\place} \ldots
 		\vfil
 		\pagebreak
 		}	

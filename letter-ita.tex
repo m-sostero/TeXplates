@@ -1,0 +1,48 @@
+%!TEX program = xelatex
+\documentclass[shortindent]{letteracdp}
+
+\usepackage{fontspec}
+\setmainfont{Libertinus Serif}[Ligatures={Common,TeX},Numbers=OldStyle]
+\setsansfont{Libertinus Sans}
+\setmonofont{Consolas}[Scale=MatchLowercase]
+\usepackage{microtype}
+
+\usepackage{polyglossia}
+\setmainlanguage{italian}
+
+\usepackage{graphicx}
+\usepackage{lipsum}
+
+
+\begin{document}
+
+\address{
+Dott. Matteo Sostero \\
+via Torricelle, 7 \\
+36060 Romano d'Ezzelino (\textsc{vi})
+}
+
+\signature{\includegraphics[page=1]{firma.pdf} \\ Matteo Sostero}
+
+\date{\today} % al solito, la data è opzionale;
+\place{Pisa}
+
+\begin{letter}{
+Dott.~Lorenzo Pantieri\\
+Dipartimento di Matematica\\
+Università degli Studi di Bologna\\
+Via Zamboni, 5\\
+40125 Bologna
+}
+[Questo è l’oggetto opzionale della lettera.]
+
+\opening{Egregio Dott. Pantieri,}
+
+\lipsum[1]
+
+\lipsum[2]
+
+\closing{Distinti saluti,}
+
+\end{letter}
+\end{document}

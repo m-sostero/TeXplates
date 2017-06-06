@@ -6,8 +6,8 @@
 \usepackage{libertine}
 
 \usepackage{pgfplots} 		% For plotting data. Also loads TikZ.
-%\usepackage{pgfplotstable}
-\pgfplotsset{compat=1.11}
+%\usepackage{pgfplotstable}\pgfplotsset{compat=1.14}
+
 \usetikzlibrary{intersections}
 \usetikzlibrary{external}						% for building images only when it's needed
 \tikzexternalize[prefix=./plots/]		% activate the library and place the images in the "images/tikz/" subfolder
@@ -24,7 +24,7 @@
 \draw[->] (0,0) -- (8,0) node[right] {$x$};
 \draw[->] (0,-1) -- (0,1) node[above] {$f(x)$};
 \draw[color=red,thick] plot (\x,{sin(\x r)}) node[right] {$f(x) =\sin (x)$ — \TeX};														% using the TeX engine
-\draw[color=blue,thick] plot[id=cosx] function{cos(x)} node[right] {$f(x) =\cos (x)$ — \texttt{gnuplot}} ; 	% using GNUPLOT 
+% \draw[color=blue,thick] plot[id=cosx] function{cos(x)} node[right] {$f(x) =\cos (x)$ — \texttt{gnuplot}} ; 	% using GNUPLOT 
 \end{tikzpicture}
 \end{frame}
 
@@ -44,8 +44,8 @@
 	axis y line=center,
 	legend cell align=left]
 \addplot[blue,domain=-1.5*pi:1.5*pi] {tan(deg((x))};
-\addplot[red] gnuplot[id=tangens,domain=-1.5*pi:1.5*pi] {tan(x-pi/2)};
-\legend{$\tan(x)$ (pgf), $\tan\left(x-\frac\pi 2\right)$ (gnuplot)}
+% \addplot[red] gnuplot[id=tangens,domain=-1.5*pi:1.5*pi] {tan(x-pi/2)};
+% \legend{$\tan(x)$ (pgf), $\tan\left(x-\frac\pi 2\right)$ (gnuplot)}
 \end{axis}
 \end{tikzpicture}
 \end{frame}
@@ -98,4 +98,5 @@
 \draw[thick,blue] (0,0) .. controls (1,1) .. (5,0)  (5,0) .. controls (6,0) and (6,1) .. (5,2);
 \end{tikzpicture}
 \end{frame}
+
 \end{document}

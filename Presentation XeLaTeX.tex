@@ -5,18 +5,87 @@
 % \PassOptionsToPackage{gray}{xcolor} % Force grey colours for printing
 % \documentclass[handout]{beamer}     % Handout mode
 
-\usepackage[xelatex]{mbeamer}
 
-\usepackage{polyglossia}
-\setdefaultlanguage{english}
-\setotherlanguage{arabic}
-\newfontfamily\arabicfont[Script=Arabic]{Times New Roman}
+%% Graphics %%
+\usepackage{fancybox,graphicx}
+\usepackage{pgfpages}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,intersections,positioning,decorations.pathreplacing,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
 
+
+%% load custom sweave (listings) package %%
+\usepackage{sweave}
+
+
+%% Font features %%
+\usepackage{lettrine}
+
+\usepackage{fontspec}
 \usepackage{xeCJK} 
+\usepackage{polyglossia}
+\usepackage{unicode-math}
+
+
+\setmainlanguage{english}
+\setotherlanguage{arabic}
+
+\usefonttheme{professionalfonts} % use own font handling
+
+% \setmainfont{Linux Libertine O}[Ligatures={Common,TeX}]
+\setmainfont{Libertinus Serif}[Ligatures={Common,TeX}]
+% \setsansfont{Linux Biolinum O}
+\setsansfont{Libertinus Sans}
+\setmonofont{Source Code Pro}[Ligatures={NoCommon},Scale=MatchLowercase,UprightFont={* Medium}]
+\setmathfont{Libertinus Math}
+
 \setCJKmainfont{標楷體} % for brush stroke on Windows 
 \setCJKfamilyfont{korm}{Gungsuh}
+\newfontfamily\arabicfont[Script=Arabic]{Amiri}
+\newfontfamily\arabicfontsf[Script=Arabic]{Amiri}
 
-\setmonofont[Ligatures={NoCommon},Scale=MatchLowercase,UprightFont={* Medium}]{Source Code Pro}
+
+\usepackage{metalogo}
+
+
+%% Tables %%
+\usepackage{booktabs}
+
+%% Miscellaneous %%
+\usepackage[os=win]{menukeys}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Custom colors
+\definecolor{Cblue}{RGB}{59,102,178}
+\definecolor{Cgreen}{RGB}{0,128,0}
+\definecolor{Cred}{RGB}{184,0,0}
+
+\newcommand{\highld}[1]{\textcolor<2->{Cblue}{#1}}
+\newcommand{\highl}[1]{\textcolor{Cblue}{#1}}
+
+\newcommand*\proitem{\item[\color{Cgreen}\resizebox{!}{1ex}{$\blacktriangleright$}]}
+\newcommand*\conitem{\item[\color{Red}\resizebox{!}{1ex}{$\blacktriangleright$}]}
+
+\newcommand{\qm}[1]{‘#1’}
+\newcommand{\dqm}[1]{“#1”}
+\newcommand{\gm}[1]{«#1»}
+
+\newcommand{\ie}{\textit{i.\,e.},\xspace}
+\newcommand{\eg}{\textit{e.\,g.},\xspace}
+
+% define \authormail , 2-argument macro to get the author name and e-mail address 
+% with hyperlink in the title page and footer, while separating text and pdf strings
+\newcommand{\authormail}[2]{
+  \author[\href{mailto:#2}{#1}]{\texorpdfstring{#1 \\ \href{mailto:#2}{\textsf{#2}}}{#1}}
+}
+
+\newenvironment{myquote}{\list{}{\leftmargin=0pt\rightmargin=10pt}\itshape\item[]}{\endlist}
+
+
 
 \author{Matteo Sostero}
 \authormail{Matteo Sostero}{m.sostero@sssup.it}
@@ -30,9 +99,10 @@
 
 
 \begin{frame}
-\includegraphics[scale=0.8]{./Images/SA_economics_logo_eng.pdf}
+\includegraphics[scale=08]{./Images/SA_economics_logo_eng.pdf}
 \maketitle
 \end{frame}
+
 
 
 \begin{frame}
@@ -107,14 +177,14 @@ This is an important warning.
 
 \section{Typesetting with \texorpdfstring{\XeLaTeX}{XeLaTeX}}
 
-\begin{frame}
+\begin{frame}%[fragile]
 \frametitle{\XeLaTeX \ features}
   \begin{exampleblock}{Unicode support}
   \begin{columns}[T]
   \begin{column}{.45\textwidth}
   \renewcommand{\baselinestretch}{0.9}
   \begin{itemize}
-  \item Arabic: \textarabic{العَرَبِية‎}
+  \item Arabic: \textarabic{العَرَبِيَّة}
   \item Armenian: {\fontspec{Times New Roman} հայերէն }
   \item Cyrillic: ру́сский
   \item Greek: ελληνικά
@@ -140,10 +210,11 @@ This is an important warning.
   \item Old style numerals: \addfontfeatures{Numbers={OldStyle,Proportional}} 0123456789
   \item Common ligatures: ff fi fj fl ffi ffl ffj Th Qu
   \item Historical ligatures: \addfontfeatures{Ligatures={Rare,Historic}} Quest \& action. Just historic.
-  \item Font-specific glyphs: \symbol{"E000} \symbol{"E009} \symbol{"E00A} \symbol{"E040} \symbol{"E001}  \symbol{"E002}  \symbol{"E003}  \symbol{"E13B} \symbol{"E13C}
+  \item Font-specific glyphs: \symbol{"E000} \symbol{"E009} \symbol{"E00A} \symbol{"E040} \symbol{"E001} \symbol{"E002} \symbol{"E003}
 \end{itemize}
 \end{exampleblock}
 \end{frame}
+
 
 
 \begin{frame}{Example blocks}
@@ -208,8 +279,9 @@ Alternatively, use: \keys{\ctrl+\shift+S} and \keys{\ctrl+\return+\tab}.
 \begin{itemize}[<+->]
 \item Meaningless expression:
 \[
-\frac{\partial \mathcal{L} \left(R(t), \phi\right)}{\partial t} \sim
-\left \lbrace \int_{-\infty}^{+\infty} \frac{\widetilde{\mathcal{H}}(\gamma) \cdot \sqrt{\lim_{t\rightarrow\infty}\exp^{t-1}}}{\sum_{i=1}^\infty \mathbb{E}\left( \dot{x}_i^2\right)} dt \right \rbrace^{-1}
+\frac{\partial \mathcal{L} \left(R(t), \phi\right)}{\partial t} \sim \left \lbrace \int_{-\infty}^{+\infty}
+\frac{\widetilde{\mathcal{H}}(\gamma) \cdot \sqrt{\lim_{t\rightarrow\infty}\exp^{t-1}}}
+     {\sum_{i=1}^\infty \mathbb{E}\left( \dot{x}_i^2\right)} \, \mathrm{d}t \right \rbrace^{-1}
 \]
 \item Matrices and greek letters
 \[
@@ -228,7 +300,7 @@ a_{\ell \kappa} & \ldots & \tau_{\ell i} \\
 \]
 
 \[
-\dot{a}\; \dot{x}\; \dot{y}\; \dot{w}\; \dot{z} \;\dot{\tau}
+  \dot{a}\; \dot{x}\; \dot{y}\; \dot{w}\; \dot{z} \;\dot{\tau}
 \]
 
 % \[
@@ -309,6 +381,9 @@ Left 2     & Center 2 & Right 2     \\
 \end{thebibliography}
 \end{frame}
 
+\end{document}
+
+
 \appendix
 
 \begin{frame}[label=Hayek-quote]{Hayek's problem\hfilll \hyperlink{Hayek-back}{\beamerreturnbutton{Literature}}}
@@ -318,12 +393,12 @@ Left 2     & Center 2 & Right 2     \\
 \includegraphics[width=\textwidth]{./Images/Hayek.jpg}
 \end{column}
 \begin{column}{0.7\textwidth}
-\begin{myquote}
-\lettrine[findent=3.5pt,nindent=-3pt]{T}{he} peculiar character of the problem of a rational economic order is determined precisely by the fact that the \highl{knowledge of the circumstances of which we must make use never exists in concentrated or integrated form}, but solely as the dispersed bits of incomplete and frequently contradictory knowledge which all the separate individuals possess.
-\end{myquote}
+\begin{quote}
+\lettrine[findent=3.5pt,nindent=-3pt]{T}{he} peculiar character of the problem of a rational economic order is determined precisely by the fact that the knowledge of the circumstances of which we must make use never exists in concentrated or integrated form, but solely as the dispersed bits of incomplete and frequently contradictory knowledge which all the separate individuals possess.
+\end{quote}
 \end{column}
 \end{columns}
-%\flushright Hayek (1945), \emph{The use of Knowledge in Society}\only<2>{, \highld{emphasis added}}
+%\flushright Hayek (1f945), \emph{The use of Knowledge in Society}\only<2>{, \highld{emphasis added}}
 \end{block}
 \end{frame}
 

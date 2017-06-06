@@ -1,0 +1,52 @@
+%!TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+
+\defaultfontfeatures{Ligatures={Common,TeX}}
+
+\setmainfont{Times New Roman}
+% \setmainfont{EBGaramond12}[
+%   Extension     = .otf ,
+%   UprightFont   = EBGaramond12-Regular,
+%   ItalicFont    = EBGaramond12-Italic,
+%   SmallCapsFont = EBGaramondSC12-Regular
+% ]
+
+\setmainfont{Minion Pro}
+
+\usepackage{booktabs}
+
+\author{Matteo Sostero}
+\title{EB Garamond}
+
+\newcommand{\U}[1]{\symbol{"#1}}
+
+\begin{document}
+
+\maketitle
+
+\centering
+
+\begin{tabular}{ll}
+\toprule
+roman               & abcdefghijklmnopqrstuvwxyz                                                                                  \\
+italic              & \emph{abcdefghijklmnopqrstuvwxyz}                                                                           \\
+contextuals         & \addfontfeature{Contextuals={Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner}} \textit{Quite \& Nice} \\
+capitals            & \uppercase{abcdefghijklmnopqrstuvwxyz}                                                                      \\
+small capitals      & \textsc{abcdefghijklmnopqrstuvwxyz}                                                                         \\
+old style numbers   & {\addfontfeatures{Numbers={OldStyle,Proportional}}1234567890}                                               \\
+liming numbers      & {\addfontfeatures{Numbers={Lining,Proportional}}1234567890}                                                 \\
+common ligatures    & ff fi fj fl ffi ffl ffj                                                                                     \\
+historic ligatures  &  Questo è strano assai! aesthetic                        \\ % \addfontfeature{Ligatures={Common,Rare,Historical}}
+quotations          & ‘bla’ “bla” «bla»                                                                                           \\
+diacritics          & ì è é ò ç à È û ê ë                                                                                         \\
+common symbols      & \& @ £ \$ \% / \textbackslash{} [ ] \{ \} ( ) = ? ' \# ° \_ * \~{} \^{} - -- --- ·                          \\
+rare symbols        & ¶ ± ¼ ½ ¾ ≠ ∞ § № ℅ ‼ ‽                                                                                     \\
+kerning \& variants & thief? thief)                                                                                               \\
+special glyphs      & \U{204B} ❦ \U{2619} ❧ \U{E001} \U{E002}                                                                     \\
+\bottomrule
+\end{tabular}
+
+
+\end{document}

@@ -54,3 +54,27 @@
 sftp-config.json
 
 _minted-Minted
+
+*.auxlock
+
+*.gnuplot
+
+*.dat
+
+*.script
+
+*.md5
+
+*.md5
+
+/Images/plots/TikZ_PGFPlots-figure1.md5
+
+/Images/plots/TikZ_PGFPlots-figure0.md5
+
+/Images/plots/TikZ_PGFPlots-figure1.md5
+
+/Images/plots/TikZ_PGFPlots-figure3.md5
+
+/Images/plots/TikZ_PGFPlots-figure5.md5
+
+/Modello nota di addebito.tex

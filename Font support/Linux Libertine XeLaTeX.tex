@@ -1,0 +1,63 @@
+%!TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{libertine}
+\usepackage{unicode-math}
+
+\defaultfontfeatures{Ligatures={Common,TeX}}
+
+% \setmainfont{Linux Libertine O}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmathfont{Libertinus Math}
+
+
+\usepackage{metalogo}
+\usepackage{booktabs}
+
+\author{Matteo Sostero}
+\title{Linux Libertine and Libertinus \XeLaTeX{} Showcase}
+
+\begin{document}
+
+\newcommand{\U}[1]{\symbol{"#1}}
+
+\maketitle
+
+\centering
+
+\begin{tabular}{ll}
+\toprule
+roman               & abcdefghijklmnopqrstuvwxyz                                                            \\
+italic              & \emph{abcdefghijklmnopqrstuvwxyz}                                                     \\
+capitals            & \uppercase{abcdefghijklmnopqrstuvwxyz}                                                \\
+small capitals      & \textsc{abcdefghijklmnopqrstuvwxyz}                                                   \\
+numbers             & {\addfontfeatures{Numbers={OldStyle,Proportional}}1234567890}                         \\
+common ligatures    & ff fi fj fl ffi ffl ffj Th Qu                                                         \\
+historic ligatures  & \addfontfeature{Ligatures={Rare,Historic}} Questo è strano assai! aesthetic           \\
+quotations          & ‘bla’ “bla” «bla»                                                                     \\
+diacritics          & è È é É ê Ê ë Ë ĕ Ĕ ē Ē ė Ė ȅ Ȅ ç ñ å                                                 \\
+common symbols      & \& @ £ \$ € \% ‰ / \textbackslash{} [ ] \{ \} ( ) = ? ' \# ° \_* \~{} \^{} - -- --- · \\
+rare symbols        & ± ½ ℝ ∂ ≈ ≠ ∞ § ♠ ♣ ♥ ♦ ‰ ¶ № ℅ ‼‽ ℅                                                  \\
+kerning \& variants & thief? thief)                                                                         \\
+special glyphs      & \U{E000} \U{E009} \U{E00A} \U{E040} \U{E001} \U{E002} \U{E003} \U{E13B} \U{E13C}      \\
+\bottomrule
+\end{tabular}
+
+\medskip
+
+\begin{itemize}
+  \item This is some math text entered with math in the source:
+  \[
+    ∀X \left[ ∅ ∉ X ⇒ ∃f:X ⟶  ⋃ X\ ∀A ∈ X \left(f(A) ∈ A \right) \right]
+  \]
+
+  \item This is some math text entered with regular markup:
+  \[
+    \forall X \left[\emptyset \not\in X \Rightarrow \exists f:X \rightarrow
+    \bigcup_{i=1}^n X\ \forall A \in X \left(f(A) \in A \right) \right  ]
+  \]
+\end{itemize}
+
+\end{document}

@@ -11,18 +11,18 @@
 ]
 
 % Draw normal curve
-\addplot[Cblue,thick,smooth,domain=-3.5:3.5] {
+\addplot[blue,thick,smooth,domain=-3.5:3.5] {
   (1/(sqrt(2*pi)))*exp(-(x^2)/2) 
 };
 
 % Draw vertical line:
 \only<2->{
-  \draw [BrickRed,thick] (axis cs:-1.5,0) -- (axis cs:-1.5,0.1295176);
+  \draw [red,thick] (axis cs:-1.5,0) -- (axis cs:-1.5,0.1295176);
 }
 
 % Draw area
 \only<3->{
-  \addplot[fill=Cblue,opacity=0.4,smooth,domain=-3.225:-1.51] { (1/(sqrt(2*pi)))*exp(-(x^2)/2) } \closedcycle;
+  \addplot[fill=blue,opacity=0.4,smooth,domain=-3.225:-1.51] { (1/(sqrt(2*pi)))*exp(-(x^2)/2) } \closedcycle;
 }
 \end{axis}
 \end{tikzpicture}

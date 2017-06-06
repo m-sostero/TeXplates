@@ -1,4 +1,6 @@
+%!TEX program = xelatex
 \documentclass[12pt,titlepage]{article}
+
 \usepackage{geometry}
 \geometry{
 	paperheight=600pt,
@@ -11,8 +13,8 @@
 \linespread{1.15}
 	
 \usepackage[
-	pdfpagemode={UseOutlines},
 	colorlinks,
+	pdfpagemode={UseOutlines},
 	citecolor={black},
 	linkcolor={black},
 	pdfstartview={Fit},
@@ -29,10 +31,9 @@
 \fancyhead[C]{\nouppercase{\leftmark}}
 
 \usepackage{fontspec}
-\setmainfont[Mapping=tex-text,Ligatures={Common}]{Palatino Linotype}
+\setmainfont{Palatino Linotype}[Ligatures={Common,TeX}]
 \usepackage{microtype}
 
-\usepackage[english]{babel}
 \usepackage{blindtext}
 
 \usepackage{booktabs}
@@ -42,8 +43,11 @@
 \begin{document}
 
 \maketitle
+
 \clearpage
+
 \tableofcontents
+
 \clearpage
 
 \blindmathpaper

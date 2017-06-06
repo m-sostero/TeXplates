@@ -1,0 +1,34 @@
+%!TEX program = xelatex
+
+% https://tex.stackexchange.com/a/235688/13552
+
+\documentclass{article}
+
+\usepackage{multicol}
+\usepackage{pgffor}
+\usepackage{tikz}
+
+\usepackage{fontspec}
+\setmainfont{Minion Pro}
+
+\begin{document}
+
+\pgfmathtruncatemacro\maxstep{\the\XeTeXcountglyphs\font-1} 
+% \typeout{maxstep is \maxstep} % Prints maxstep to log
+Number of glyphs: \maxstep\\
+
+\begin{multicols}{5}
+\foreach \charstep in {1,...,\maxstep}{%
+    \iffontchar\font\charstep
+        \makebox[3em][l]{\charstep}%
+        \XeTeXglyph\charstep
+        \endgraf
+    \else
+        \makebox[3em][l]{\the\charstep"}
+        
+        \endgraf
+    \fi
+}%
+\end{multicols}
+
+\end{document}
