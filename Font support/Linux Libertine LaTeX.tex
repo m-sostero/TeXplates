@@ -4,6 +4,9 @@
 \usepackage[T1]{fontenc}
 \usepackage[osf]{libertine}
 
+\input{glyphtounicode}
+\pdfgentounicode=1
+
 \usepackage{metalogo}
 \usepackage{booktabs}
 
@@ -11,8 +14,6 @@
 \title{Linux Libertine \LaTeX{} Showcase}
 
 \begin{document}
-
-\newcommand{\U}[1]{\symbol{"#1}}
 
 \maketitle
 
@@ -31,7 +32,6 @@ diacritics          & ì è é ò ç à È û ê ë                             
 common symbols      & \& @ £ \$ \% ‰ / \textbackslash{} [ ] \{ \} ( ) = ? ' \# ° \_* \~{} \^{} - -- --- · \\
 rare symbols        & ± ¼ ½ ¾ § ‰ ¶ № ‽                                                                   \\
 kerning \& variants & thief? thief)                                                                       \\
-% special glyphs    & \U{E000} \U{E009} \U{E00A} \U{E040} \U{E001} \U{E002} \U{E003} \U{E13B} \U{E13C}    \\
 \bottomrule
 \end{tabular}
 
