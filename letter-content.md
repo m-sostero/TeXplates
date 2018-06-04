@@ -23,7 +23,7 @@ geometry: a4paper, left=35mm, right=35mm, top=50mm, bottom=25mm
 # customdate: YYYY-MM-DD
 ---
 
-Dear Friend,
+Dear Friend, 
 
 I am a bombardier in the second mounted division of the Fourth Horse Artillery.
 
