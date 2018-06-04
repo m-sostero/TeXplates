@@ -1,0 +1,20 @@
+\documentclass{article}
+
+\usepackage{dcolumn}
+
+\newcolumntype{d}[1]{D..{#1}} % for alignment of numbers on decimal marker
+
+\begin{document}
+
+\begin{tabular}{|l|d{4.6}|} 
+\hline  % just to mark width of tabular env.
+A & 0.123^{***} \\
+  & (-12.11)    \\
+B & 0.456^{*}   \\
+  & (-8.45)     \\
+C & 0.789^{**}  \\
+  & (12.34)     \\
+\hline
+\end{tabular}
+
+\end{document}
